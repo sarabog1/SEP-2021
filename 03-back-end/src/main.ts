@@ -1,9 +1,8 @@
 import * as express from "express";
 import * as cors from "cors";
 import Config from "./config/dev";
-import SalonService from './components/salon/service';
-import SalonController from './components/salon/controller';
-import SalonModel from "./components/salon/model";
+import SalonRouter from './components/salon/router';
+
 const application: express.Application = express();
 
 application.use(cors());
@@ -19,11 +18,8 @@ application.use(
     
     }),
 );
-const salonService: SalonService= new SalonService();
-const salonController: SalonController= new SalonController(salonService);
 
-application.get("/salon", salonController.getAll.bind(salonController));
-application.get("/salon/:id", salonController.getById.bind(salonController))
+SalonRouter.setupRoutes(application);
 
 application.use((req, res)=>{
     res.sendStatus(404);
