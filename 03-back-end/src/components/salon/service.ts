@@ -1,45 +1,57 @@
 import SalonModel from "./model";
+import * as mysql2 from 'mysql2/promise';
 
 
 class SalonService{
+    private db: mysql2.Connection;
+    constructor(db: mysql2.Connection){
+        this.db = db;
+    }
+
+    protected async adaptModel(row: any): Promise<SalonModel> {
+        const item: SalonModel = new SalonModel();
+        item.salonId = Number(row?.salon_id);
+        item.name = row?.name;
+        item.locationId = +(row?.location_id);
+        item.serviceId = +(row?.service_id);
+
+
+        return item;
+    }
+
     public async getAll(): Promise<SalonModel[]> {
         const lista:SalonModel[] = [];
 
-        lista.push({
-            salonId: 1,
-            name: "Ime salona",
-            locationId: 1,
-        });
-        lista.push({
-            salonId: 2,
-            name: "Ime salona2",
-            locationId: 2,
-        });
+     const sql: string = "SELECT * FROM salon;";
+     const [ rows, colums ] = await this.db.execute(sql);
+
+     if (Array.isArray(rows)){
+         for(const row of rows){
+            lista.push(
+                await this.adaptModel(row)
+            )
+         }
+     }
+
 
         return lista;
     }
     public async getById(salonId: number): Promise<SalonModel|null>{
-        if (salonId === 1 || salonId === 2){
-            if (salonId === 1){
-                return {
-                    salonId: 1,
-                    name: "Ime salona",
-                    locationId: 1,
-                };
-            }
-            if(salonId === 2){
-                return {
-                    salonId: 2,
-                    name: "Ime salona2",
-                    locationId: 2,
-                };
-            }
-        else{
+        
+        const sql: string = "SELECT * FROM salon WHERE salon_id= ? ;";
+        const [ rows, colums ] = await this.db.execute(sql, [salonId]);
+
+        if (!Array.isArray(rows)){
             return null;
         }
-            
+        if(rows.length === 0){
+            return null;
         }
+
+        return await this.adaptModel(rows[0])
+     
     }
+    
 
 }
 export default SalonService;

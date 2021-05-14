@@ -15,11 +15,6 @@ class SalonController{
     }
     async getById(req: Request, res: Response, next: NextFunction) {
         const id: string = req.params.id;
-
-        
-
-        
-
         const salon: SalonModel|null = await this.salonService.getById(+id);
 
         const salonId: number = +id;
@@ -36,5 +31,6 @@ class SalonController{
        res.send(salon);
        
     }
+    
 }
 export default SalonController;
