@@ -11,7 +11,8 @@ export default class SalonRouter implements IRouter{
     const salonService: SalonService= new SalonService(resources.databaseConnection);
     const salonController: SalonController= new SalonController(salonService);
 
-    application.get("/salon", salonController.getAll.bind(salonController));
-    application.get("/salon/:id", salonController.getById.bind(salonController))
+    application.get("/salon",     salonController.getAll.bind(salonController));
+    application.get("/salon/:id", salonController.getById.bind(salonController));
+    application.post("/salon",    salonController.add.bind(salonController));
     }
 }

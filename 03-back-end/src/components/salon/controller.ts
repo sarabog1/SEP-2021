@@ -1,6 +1,8 @@
 import SalonService from './service';
 import {Request, Response, NextFunction} from "express";
 import SalonModel from './model';
+import { IAddSalon, IAddSalonValidator } from './dto/AddSalon';
+import IErrorResponse from '../../common/IError.interface';
 
 class SalonController{
     private salonService: SalonService;
@@ -30,6 +32,18 @@ class SalonController{
        res.status(500).send(data);
        
     }
-    
+    async add(req: Request, res:Response, next: NextFunction){
+        const data = req.body;
+
+        if(!IAddSalonValidator(data)){
+            res.status(400).send(IAddSalonValidator.errors);
+            return;
+        }
+
+        
+       const result = await this.salonService.add(data as IAddSalon);
+        
+       res.send(result);
+    }
 }
 export default SalonController;

@@ -72,7 +72,23 @@ class SalonService{
 
 
     }
-    
+ 
+   public async add(data: IAddSalon): Promise<SalonModel|IErrorResponse>{
+       return new Promise<SalonModel|IErrorResponse>(async resolve => {
+           const sql = "INSERT salon SET name = ?, location_id = ?, service_id = ?;";
+           this.db.execute(sql, [data.name, data.locationId, data.serviceId])
+            .then(async result => {
+                const insertInfo: any = result[0];
+
+                const newSalonId: number = +(insertInfo?.insertId);
+                resolve(await this.getById(newSalonId));
+            })
+            .catch(error => resolve({
+                errorCode: error?.errno,
+                errorMessage: error?.sqlMessage
+            }));
+       });
+   } 
     
 }
 export default SalonService;
