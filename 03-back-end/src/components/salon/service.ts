@@ -1,5 +1,7 @@
 import SalonModel from "./model";
 import * as mysql2 from 'mysql2/promise';
+import { resolve } from "path";
+import { IAddSalon } from "./dto/AddSalon";
 
 
 class SalonService{
@@ -42,16 +44,20 @@ class SalonService{
         const [ rows, colums ] = await this.db.execute(sql, [salonId]);
 
         if (!Array.isArray(rows)){
-            return null;
+            resolve(null);
+            return;
         }
         if(rows.length === 0){
-            return null;
+            resolve(null);
+            return;
         }
 
         return await this.adaptModel(rows[0])
-     
+        
+
+
     }
     
-
+    
 }
 export default SalonService;

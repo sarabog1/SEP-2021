@@ -4,6 +4,7 @@ import Config from "./config/dev";
 import SalonRouter from './components/salon/router';
 import * as mysql2 from "mysql2/promise"
 import IApplicationResorces from './common/IApplicationResorces.interface';
+import Router from "./router";
 
 async function main() {
     const application: express.Application = express();
@@ -35,8 +36,10 @@ application.use(
     
     }),
 );
+Router.setupRoutes(application, resources, [
+   new SalonRouter(),
+]);
 
-SalonRouter.setupRoutes(application, resources);
 
 application.use((req, res)=>{
     res.sendStatus(404);
