@@ -1,4 +1,5 @@
-class SalonModel{
+import IModel from '../../common/IModel.interface';
+class SalonModel implements IModel{
     salonId: number;
     name: string;
     locationId: number;

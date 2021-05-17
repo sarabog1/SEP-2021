@@ -1,14 +1,12 @@
 import SalonModel from "./model";
-import * as mysql2 from 'mysql2/promise';
+
 import { IAddSalon } from "./dto/AddSalon";
 import IErrorResponse from '../../common/IError.interface';
+import BaseService from '../../services/BaseService';
 
 
-class SalonService{
-    private db: mysql2.Connection;
-    constructor(db: mysql2.Connection){
-        this.db = db;
-    }
+class SalonService extends BaseService<SalonModel>{
+    
 
     protected async adaptModel(row: any): Promise<SalonModel> {
         const item: SalonModel = new SalonModel();
@@ -22,52 +20,11 @@ class SalonService{
     }
 
     public async getAll(): Promise<SalonModel[]|IErrorResponse> {
-        return new Promise<SalonModel[]|IErrorResponse>(async(resolve) =>{
-            
-
-                const sql: string = "SELECT * FROM salon;";
-                this.db.execute(sql)
-                    .then(async result => {
-                     const rows = result[0];
-                        const lista : SalonModel[] = [];  
-
-                     if (Array.isArray(rows)){
-                            for(const row of rows){
-                                lista.push(
-                                    await this.adaptModel(row)
-                         )
-                    }
-                }
-                 resolve(lista);
-                 })
-                .catch(error => {
-                    resolve({
-                        errorCode: error?.errno,
-                        errorMessage: error?.sqlMessage,
-                    });
-                })
-
-
-
-             
-             });
+        return await this.getAllFromTable("salon");
         
     }
-    public async getById(salonId: number): Promise<SalonModel|null>{
-        
-        const sql: string = "SELECT * FROM salon WHERE salon_id= ? ;";
-        const [ rows, colums ] = await this.db.execute(sql, [salonId]);
-
-        if (!Array.isArray(rows)){
-           
-            return null;
-        }
-        if(rows.length === 0){
-            
-            return null;
-        }
-
-        return await this.adaptModel(rows[0])
+    public async getById(salonId: number): Promise<SalonModel|null|IErrorResponse>{
+        return await this.getByIdFromTable("salon", salonId);
         
 
 

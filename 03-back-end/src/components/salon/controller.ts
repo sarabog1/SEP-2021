@@ -23,7 +23,7 @@ class SalonController{
             res.sendStatus(400);
             return;
         }
-        const data: SalonModel|null = await this.salonService.getById(salonId);
+        const data: SalonModel|null|IErrorResponse = await this.salonService.getById(salonId);
         if(data === null){
             res.sendStatus(404);
             return;
