@@ -1,7 +1,7 @@
 import SalonModel from "./model";
 import * as mysql2 from 'mysql2/promise';
-import { resolve } from "path";
 import { IAddSalon } from "./dto/AddSalon";
+import IErrorResponse from '../../common/IError.interface';
 
 
 class SalonService{
@@ -21,22 +21,37 @@ class SalonService{
         return item;
     }
 
-    public async getAll(): Promise<SalonModel[]> {
-        const lista:SalonModel[] = [];
+    public async getAll(): Promise<SalonModel[]|IErrorResponse> {
+        return new Promise<SalonModel[]|IErrorResponse>(async(resolve) =>{
+            
 
-     const sql: string = "SELECT * FROM salon;";
-     const [ rows, colums ] = await this.db.execute(sql);
+                const sql: string = "SELECT * FROM salon;";
+                this.db.execute(sql)
+                    .then(async result => {
+                     const rows = result[0];
+                        const lista : SalonModel[] = [];  
 
-     if (Array.isArray(rows)){
-         for(const row of rows){
-            lista.push(
-                await this.adaptModel(row)
-            )
-         }
-     }
+                     if (Array.isArray(rows)){
+                            for(const row of rows){
+                                lista.push(
+                                    await this.adaptModel(row)
+                         )
+                    }
+                }
+                 resolve(lista);
+                 })
+                .catch(error => {
+                    resolve({
+                        errorCode: error?.errno,
+                        errorMessage: error?.sqlMessage,
+                    });
+                })
 
 
-        return lista;
+
+             
+             });
+        
     }
     public async getById(salonId: number): Promise<SalonModel|null>{
         
@@ -44,12 +59,12 @@ class SalonService{
         const [ rows, colums ] = await this.db.execute(sql, [salonId]);
 
         if (!Array.isArray(rows)){
-            resolve(null);
-            return;
+           
+            return null;
         }
         if(rows.length === 0){
-            resolve(null);
-            return;
+            
+            return null;
         }
 
         return await this.adaptModel(rows[0])
