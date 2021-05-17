@@ -45,6 +45,9 @@ application.use((req, res)=>{
     res.sendStatus(404);
 });
 
+application.use((err, req, res, next) => {
+    res.status(err.status).send(err.type);
+})
 application.listen(Config.server.port);
 }
 main();
