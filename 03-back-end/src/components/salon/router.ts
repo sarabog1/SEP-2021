@@ -3,6 +3,7 @@ import SalonService from './service';
 import SalonController from './controller';
 import IApplicationResorces from '../../common/IApplicationResorces.interface';
 import IRouter from "../../common/IRouter.interface";
+import SalonModel from './model';
 
 
 export default class SalonRouter implements IRouter{
@@ -14,5 +15,6 @@ export default class SalonRouter implements IRouter{
     application.get("/salon",     salonController.getAll.bind(salonController));
     application.get("/salon/:id", salonController.getById.bind(salonController));
     application.post("/salon",    salonController.add.bind(salonController));
+    application.put("/salon/:id", salonController.edit.bind(salonController));
     }
 }

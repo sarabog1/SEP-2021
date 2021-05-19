@@ -3,6 +3,8 @@ import {Request, Response, NextFunction} from "express";
 import SalonModel from './model';
 import { IAddSalon, IAddSalonValidator } from './dto/AddSalon';
 import IErrorResponse from '../../common/IError.interface';
+import { IEditSalon, IEditSalonValidator } from './dto/EditSalon';
+
 
 class SalonController{
     private salonService: SalonService;
@@ -45,5 +47,33 @@ class SalonController{
         
        res.send(result);
     }
-}
+    async edit(req: Request, res:Response, next: NextFunction){
+        const id: string = req.params.id;
+        const salonId: number = +id;
+
+        if (salonId <= 0) {
+            res.status(400).send("Invalid ID number.");
+            return;
+        }
+
+        const data = req.body;
+
+        if (!IEditSalonValidator(data)){
+            res.status(400).send(IEditSalonValidator.errors);
+        }
+
+        const result = await this.salonService.edit(data as IEditSalon, salonId);
+        
+
+        res.send(result);
+
+    }
+
+    }
+
+    
+
+ 
 export default SalonController;
+
+

@@ -3,6 +3,7 @@ import SalonModel from "./model";
 import { IAddSalon } from "./dto/AddSalon";
 import IErrorResponse from '../../common/IError.interface';
 import BaseService from '../../services/BaseService';
+import { IEditSalon } from "./dto/EditSalon";
 
 
 class SalonService extends BaseService<SalonModel>{
@@ -46,6 +47,28 @@ class SalonService extends BaseService<SalonModel>{
             }));
        });
    } 
-    
+   public async edit(data: IEditSalon, salonId: number): Promise<SalonModel|null|IErrorResponse>{
+    const result = await this.getById(salonId);
+    if (result === null) {
+        return null;
+    }
+
+    if (!(result instanceof SalonModel)) {
+        return result;
+    }
+    return new Promise<SalonModel|IErrorResponse>(async resolve => {
+        const sql = "UPDATE salon SET name = ?, location_id = ?, service_id = ? WHERE salon_id = ?;";
+        this.db.execute(sql, [data.name, data.locationId, data.serviceId, salonId])
+         .then(async result => {
+             
+             resolve(await this.getById(salonId));
+         })
+         .catch(error => resolve({
+             errorCode: error?.errno,
+             errorMessage: error?.sqlMessage
+         }));
+    })
+
+   }
 }
 export default SalonService;
