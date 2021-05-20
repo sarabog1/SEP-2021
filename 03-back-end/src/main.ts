@@ -5,6 +5,7 @@ import SalonRouter from './components/salon/router';
 import * as mysql2 from "mysql2/promise"
 import IApplicationResorces from './common/IApplicationResorces.interface';
 import Router from "./router";
+import StyllistRouter from './components/hairStyllist/router';
 
 async function main() {
     const application: express.Application = express();
@@ -38,6 +39,7 @@ application.use(
 );
 Router.setupRoutes(application, resources, [
    new SalonRouter(),
+   new StyllistRouter(),
 ]);
 
 
