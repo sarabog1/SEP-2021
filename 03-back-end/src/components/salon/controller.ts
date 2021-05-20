@@ -68,6 +68,18 @@ class SalonController{
         res.send(result);
 
     }
+    async deleteById(req: Request, res:Response, next: NextFunction){
+        const id: string = req.params.id;
+
+        const salonId: number = +id;
+
+        if (salonId <= 0){
+            res.status(400).send("Inavild ID number");
+            return;
+        }
+
+        res.send(await this.salonService.delete(salonId));
+    }
 
     }
 

@@ -16,6 +16,6 @@ export default class SalonRouter implements IRouter{
     application.get("/salon/:id", salonController.getById.bind(salonController));
     application.post("/salon",    salonController.add.bind(salonController));
     application.put("/salon/:id", salonController.edit.bind(salonController));
-    
+    application.delete("/salon/:id", salonController.deleteById.bind(salonController));
     }
 }

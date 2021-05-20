@@ -6,6 +6,7 @@ import BaseService from '../../services/BaseService';
 import { IEditSalon } from "./dto/EditSalon";
 
 
+
 class SalonService extends BaseService<SalonModel>{
     
 
@@ -69,6 +70,36 @@ class SalonService extends BaseService<SalonModel>{
          }));
     })
 
+   }
+   public async delete(salonId: number): Promise<IErrorResponse>{
+       return new Promise<IErrorResponse>(resolve => {
+           const sql = "DELETE FROM salon WHERE salon_id = ?;";
+           this.db.execute(sql, [salonId])
+            .then(async result =>{
+                const  deleteInfo: any = result[0];
+                const deletedRowCount: number = +(deleteInfo?.affectedRows);
+
+                if (deletedRowCount === 1) {
+                    resolve({
+                        errorCode: 0,
+                        errorMessage: "Record deleted"   
+                    });
+                }
+                else {
+                    resolve({
+                        errorCode: -1,
+                        errorMessage: "This salon could not be deleted"   
+                    })
+                }
+
+            })
+            .catch(error =>{
+                resolve({
+                    errorCode: error?.errno,
+                    errorMessage: error?.sqlMessage   
+                })
+            })
+       })
    }
 }
 export default SalonService;
