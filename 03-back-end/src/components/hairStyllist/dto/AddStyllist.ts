@@ -5,35 +5,36 @@ interface IAddStyllist {
     surname: string;
     salonId: number;
 }
+
 const ajv = new Ajv();
+
 const IAddStyllistValidator = ajv.compile({
     type: "object",
-    properties:{
+    properties: {
         name: {
             type: "string",
             minLength: 2,
-            maxLength: 50,
+            maxLength: 64,
         },
-        surname:{
+        surname: {
             type: "string",
             minLength: 2,
-            maxLength: 50,
+            maxLength: 64,
         },
         salonId: {
             type: "integer",
             minimum: 1,
         },
+
     },
     required: [
         "name",
         "surname",
-        "salonId"
+        "salonId",
     ],
     additionalProperties: false,
 
 });
 
-export { IAddStyllist };
-export { IAddStyllistValidator };
-
-
+export {IAddStyllist};
+export {IAddStyllistValidator};

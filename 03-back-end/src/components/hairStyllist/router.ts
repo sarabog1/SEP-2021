@@ -14,9 +14,10 @@ export default class StyllistRouter implements IRouter{
         const styllistService: StyllistService= new StyllistService(resources.databaseConnection);
         const styllistController: StyllistController= new StyllistController(styllistService);
 
-    application.get("/styllist/:id",      styllistController.getById.bind(styllistController));
+    application.get("/styllist/:id",        styllistController.getById.bind(styllistController));
     application.get("/salon/:cid/styllist", styllistController.getAllInSalon.bind(styllistController));
-
-
+    application.post("/styllist",           styllistController.add.bind(styllistController)); 
+    application.put("/styllist/:id",        styllistController.edit.bind(styllistController));
+    application.delete("/styllist/:id",        styllistController.deleteById.bind(styllistController));
 }
 }
