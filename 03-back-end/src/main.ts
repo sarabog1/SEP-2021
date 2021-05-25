@@ -7,6 +7,7 @@ import IApplicationResorces from './common/IApplicationResorces.interface';
 import Router from "./router";
 import StyllistRouter from './components/hairStyllist/router';
 import LocationRouter from './components/location/router';
+import ServiceRouter from "./service/router";
 
 async function main() {
     const application: express.Application = express();
@@ -42,6 +43,7 @@ Router.setupRoutes(application, resources, [
    new SalonRouter(),
    new StyllistRouter(),
    new LocationRouter(),
+   new ServiceRouter(),
 ]);
 
 

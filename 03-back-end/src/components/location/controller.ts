@@ -49,25 +49,35 @@ class LocationController{
        res.send(result);
     }
 
-    async edit(req: Request, res:Response, next: NextFunction){
-        const id: string = req.params.id;
-        const locationId: number = +id;
+    public async edit(req: Request, res: Response){
+        const locationId = +(req.params.id);
 
-        if (locationId <= 0) {
-            res.status(400).send("Invalid ID number.");
+        if (locationId <= 0){
+            res.sendStatus(400);
             return;
         }
 
-        const data = req.body;
-
-        if (!IEditLocationValidator(data)){
+        if(!IEditLocationValidator(req.body)){
             res.status(400).send(IEditLocationValidator.errors);
+            return;
         }
 
-        const result = await this.locationService.edit(data as IEditLocation, locationId);
+        const result = await this.locationService.getById(locationId)
+
+        if(result === null){
+            res.sendStatus(404);
+            return;
+        }
+
+        if (!(result instanceof LocationModel)) {
+            res.status(500).send(result);
+            return;
+        }
+
         
 
-        res.send(result);
+       res.send(await this.locationService.edit(locationId, req.body as IEditLocation));
+        
 
     }
 

@@ -47,29 +47,22 @@ public async add(data: IAddLocation): Promise<LocationModel|IErrorResponse>{
 
 }
 
-public async edit(data: IEditLocation, locationId: number): Promise<LocationModel|null|IErrorResponse>{
-    const result = await this.getById(locationId);
-    if (result === null) {
-        return null;
-    }
-
-    if (!(result instanceof LocationModel)) {
-        return result;
-    }
-    return new Promise<LocationModel|IErrorResponse>(async resolve => {
+public async edit(locationId: number, data: IEditLocation): Promise<LocationModel|IErrorResponse>{
+    return new  Promise<LocationModel|IErrorResponse>(resolve => {
         const sql = "UPDATE location SET street = ?, number = ? WHERE location_id = ?;";
-        this.db.execute(sql, [data.street, data.number, locationId])
-         .then(async result => {
-             
-             resolve(await this.getById(locationId));
-         })
-         .catch(error => resolve({
-             errorCode: error?.errno,
-             errorMessage: error?.sqlMessage
-         }));
-    })
-
-   }
+        this.db.execute(sql, [ data.street, data.number,  locationId ])
+            .then(async result => {
+                resolve(await this.getById(locationId));
+            })
+            .catch(error => {
+                resolve({
+                    errorCode: error?.errno,
+                    errorMessage: error?.sqlMessage
+                });
+            })
+        
+    });
+ }
 
    public async delete(locationId: number): Promise<IErrorResponse>{
     return new Promise<IErrorResponse>(resolve => {

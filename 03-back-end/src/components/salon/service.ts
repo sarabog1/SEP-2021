@@ -4,9 +4,12 @@ import { IAddSalon } from "./dto/AddSalon";
 import IErrorResponse from '../../common/IError.interface';
 import BaseService from '../../services/BaseService';
 import { IEditSalon } from "./dto/EditSalon";
+import IModelAdapterOptions from '../../common/IModelAdapterOptionst.interface';
 
 
-
+///class SalonModelAdapterOptions implements IModelAdapterOptions {
+ //   loadHairStyllist: boolean = false;
+//}
 class SalonService extends BaseService<SalonModel>{
     
 
