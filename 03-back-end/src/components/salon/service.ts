@@ -1,24 +1,45 @@
 import SalonModel from "./model";
-
 import { IAddSalon } from "./dto/AddSalon";
 import IErrorResponse from '../../common/IError.interface';
-import BaseService from '../../services/BaseService';
+import BaseService from '../../common/BaseService';
 import { IEditSalon } from "./dto/EditSalon";
 import IModelAdapterOptions from '../../common/IModelAdapterOptionst.interface';
+import LocationModel from '../location/model';
+import ServiceModel from '../service/model';
+import StyllistModel from '../hairStyllist/model';
 
 
-///class SalonModelAdapterOptions implements IModelAdapterOptions {
- //   loadHairStyllist: boolean = false;
-//}
+class SalonModelAdapterOptions implements IModelAdapterOptions {
+   loadLocation: boolean = false;
+   loadService: boolean = false;
+   loadHairStyllist: boolean = false;
+}
 class SalonService extends BaseService<SalonModel>{
     
 
-    protected async adaptModel(row: any): Promise<SalonModel> {
+    protected async adaptModel(row: any, options:Partial<SalonModelAdapterOptions>): Promise<SalonModel> {
         const item: SalonModel = new SalonModel();
         item.salonId = Number(row?.salon_id);
         item.name = row?.name;
         item.locationId = +(row?.location_id);
         item.serviceId = +(row?.service_id);
+
+        if (options.loadHairStyllist){
+           const result = await this.services.styllistService.getById(item.salonId);
+           item.hairStyllist = result as StyllistModel;
+        }
+
+        if (  item.serviceId){
+            const result = await this.services.serviceService.getById(item.serviceId);
+            item.service = result as ServiceModel;
+        }
+
+        if ( item.locationId){
+            const result = await this.services.locationService.getById(item.locationId);
+            item.location = result as LocationModel;
+        }
+
+
 
 
         return item;

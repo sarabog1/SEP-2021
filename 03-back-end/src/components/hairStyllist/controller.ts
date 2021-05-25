@@ -3,13 +3,10 @@ import StyllistService from "./service";
 import StyllistModel from './model';
 import { IAddStyllist, IAddStyllistValidator } from "./dto/AddStyllist";
 import { IEditStyllist, IEditStyllistValidator } from "./dto/EditStyllist";
+import BaseController from '../../common/BaseController';
 
-class StyllistController{
-    private styllistService: StyllistService;
-
-    constructor(styllistService: StyllistService) {
-        this.styllistService = styllistService;
-    }
+class StyllistController extends BaseController{
+   
 
     public async getById(req: Request, res: Response, next: NextFunction){
         const id: string = req.params.id;
@@ -21,7 +18,7 @@ class StyllistController{
             return;
         }
 
-        const result =await this.styllistService.getById(hairStyllistId);
+        const result =await this.services.styllistService.getById(hairStyllistId);
 
         if(result === null){
             res.sendStatus(404);
@@ -38,7 +35,7 @@ class StyllistController{
     }
     public async getAllInSalon(req: Request, res: Response, next: NextFunction) {
         const salonId: number = +(req.params.cid);
-        res.send(await this.styllistService.getAllBySalonId(salonId));
+        res.send(await this.services.styllistService.getAllBySalonId(salonId));
     
     }
 
@@ -51,7 +48,7 @@ class StyllistController{
         }
 
         
-       const result = await this.styllistService.add(data as IAddStyllist);
+       const result = await this.services.styllistService.add(data as IAddStyllist);
         
        res.send(result);
     }
@@ -69,7 +66,7 @@ class StyllistController{
             return;
         }
 
-        const result = await this.styllistService.getById(hairStyllistId)
+        const result = await this.services.styllistService.getById(hairStyllistId)
 
         if(result === null){
             res.sendStatus(404);
@@ -83,7 +80,7 @@ class StyllistController{
 
         
 
-       res.send(await this.styllistService.edit(hairStyllistId, req.body as IEditStyllist));
+       res.send(await this.services.styllistService.edit(hairStyllistId, req.body as IEditStyllist));
         
 
     }
@@ -97,7 +94,7 @@ class StyllistController{
             return;
         }
 
-        res.send(await this.styllistService.delete(hairStyllistId));
+        res.send(await this.services.styllistService.delete(hairStyllistId));
     }
 
        

@@ -14,12 +14,10 @@
 
 
 -- Dumping database structure for salon_app
-DROP DATABASE IF EXISTS `salon_app`;
 CREATE DATABASE IF NOT EXISTS `salon_app` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `salon_app`;
 
 -- Dumping structure for table salon_app.admin
-DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
   `admin_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(128) NOT NULL,
@@ -36,7 +34,6 @@ INSERT INTO `admin` (`admin_id`, `username`, `password_hash`) VALUES
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
 -- Dumping structure for table salon_app.appointment
-DROP TABLE IF EXISTS `appointment`;
 CREATE TABLE IF NOT EXISTS `appointment` (
   `appointment_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `available_appointemt_id` int(10) unsigned NOT NULL,
@@ -53,7 +50,6 @@ CREATE TABLE IF NOT EXISTS `appointment` (
 /*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
 
 -- Dumping structure for table salon_app.available_appointment
-DROP TABLE IF EXISTS `available_appointment`;
 CREATE TABLE IF NOT EXISTS `available_appointment` (
   `available_appointment_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL DEFAULT curdate(),
@@ -71,7 +67,6 @@ CREATE TABLE IF NOT EXISTS `available_appointment` (
 /*!40000 ALTER TABLE `available_appointment` ENABLE KEYS */;
 
 -- Dumping structure for table salon_app.customer
-DROP TABLE IF EXISTS `customer`;
 CREATE TABLE IF NOT EXISTS `customer` (
   `customer_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -85,7 +80,6 @@ CREATE TABLE IF NOT EXISTS `customer` (
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 
 -- Dumping structure for table salon_app.hair_styllist
-DROP TABLE IF EXISTS `hair_styllist`;
 CREATE TABLE IF NOT EXISTS `hair_styllist` (
   `hair_styllist_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -96,39 +90,29 @@ CREATE TABLE IF NOT EXISTS `hair_styllist` (
   CONSTRAINT `fk_hair_styllist_salon_hair_styllist_id` FOREIGN KEY (`salon_id`) REFERENCES `salon` (`salon_id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
--- Dumping data for table salon_app.hair_styllist: ~6 rows (approximately)
+-- Dumping data for table salon_app.hair_styllist: ~0 rows (approximately)
 /*!40000 ALTER TABLE `hair_styllist` DISABLE KEYS */;
-INSERT INTO `hair_styllist` (`hair_styllist_id`, `name`, `surname`, `salon_id`) VALUES
-	(1, 'Nevena', 'Nevenic', 2),
-	(2, 'Saki', 'Bogicevic', 3),
-	(3, 'Aleksandra', 'Aleksic', 3),
-	(4, 'Sara', 'Saric', 1),
-	(5, 'Nikolina', 'Nikolic', 1),
-	(7, 'sara', 'bogunovic', 2),
-	(8, 'Kristina', 'Krstic', 1),
-	(9, 'Sara', 'Saric', 1),
-	(10, 'Sarah', 'Sharic', 2);
 /*!40000 ALTER TABLE `hair_styllist` ENABLE KEYS */;
 
 -- Dumping structure for table salon_app.location
-DROP TABLE IF EXISTS `location`;
 CREATE TABLE IF NOT EXISTS `location` (
   `location_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `street` varchar(50) NOT NULL,
   `number` int(10) NOT NULL,
   PRIMARY KEY (`location_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Dumping data for table salon_app.location: ~2 rows (approximately)
+-- Dumping data for table salon_app.location: ~4 rows (approximately)
 /*!40000 ALTER TABLE `location` DISABLE KEYS */;
 INSERT INTO `location` (`location_id`, `street`, `number`) VALUES
 	(1, 'Ladne vode', 122),
-	(2, 'Zorza Klemensoa', 34),
-	(3, 'Cvijiceva', 134);
+	(2, 'Marsala Tita', 223),
+	(3, 'Cvijiceva', 134),
+	(4, 'Dabovicka', 33),
+	(6, 'Nikodima', 22);
 /*!40000 ALTER TABLE `location` ENABLE KEYS */;
 
 -- Dumping structure for table salon_app.salon
-DROP TABLE IF EXISTS `salon`;
 CREATE TABLE IF NOT EXISTS `salon` (
   `salon_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -139,32 +123,29 @@ CREATE TABLE IF NOT EXISTS `salon` (
   KEY `fk_salon_service_id` (`service_id`),
   CONSTRAINT `fk_salon_location_salon_id` FOREIGN KEY (`location_id`) REFERENCES `location` (`location_id`) ON UPDATE CASCADE,
   CONSTRAINT `fk_salon_service_id` FOREIGN KEY (`service_id`) REFERENCES `service` (`service_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Dumping data for table salon_app.salon: ~4 rows (approximately)
+-- Dumping data for table salon_app.salon: ~0 rows (approximately)
 /*!40000 ALTER TABLE `salon` DISABLE KEYS */;
 INSERT INTO `salon` (`salon_id`, `name`, `location_id`, `service_id`) VALUES
-	(1, 'Centar3', 2, 2),
-	(2, 'Centar22', 2, 3),
-	(3, 'Dunavska', 2, 3),
-	(4, 'Centar2', 2, 2);
+	(8, 'Nikodima', 6, 4);
 /*!40000 ALTER TABLE `salon` ENABLE KEYS */;
 
 -- Dumping structure for table salon_app.service
-DROP TABLE IF EXISTS `service`;
 CREATE TABLE IF NOT EXISTS `service` (
   `service_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `type` enum('haircut','blowdring','farbing') NOT NULL,
+  `type` varchar(50) NOT NULL,
   `price` int(11) NOT NULL,
   PRIMARY KEY (`service_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Dumping data for table salon_app.service: ~2 rows (approximately)
+-- Dumping data for table salon_app.service: ~3 rows (approximately)
 /*!40000 ALTER TABLE `service` DISABLE KEYS */;
 INSERT INTO `service` (`service_id`, `type`, `price`) VALUES
-	(1, 'haircut', 500),
-	(2, 'blowdring', 600),
-	(3, 'farbing', 700);
+	(4, 'Haircut', 250),
+	(5, 'Haistyle', 500),
+	(6, 'Farbing', 1),
+	(7, 'Cuting', 700);
 /*!40000 ALTER TABLE `service` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

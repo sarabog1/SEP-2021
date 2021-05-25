@@ -7,8 +7,8 @@ import LocationController from './controller';
 export default class LocationRouter implements IRouter{
     public setupRoutes(application: express.Application, resources: IApplicationResorces){
 
-        const locationService: LocationService= new LocationService(resources.databaseConnection);
-        const locationController: LocationController= new LocationController(locationService);
+        
+        const locationController: LocationController= new LocationController(resources);
 
         application.get("/location",        locationController.getAll.bind(locationController));
         application.get("/location/:id",    locationController.getById.bind(locationController));

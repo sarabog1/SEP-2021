@@ -1,5 +1,5 @@
-import IErrorResponse from "../common/IError.interface";
-import BaseService from "../services/BaseService";
+import IErrorResponse from "../../common/IError.interface";
+import BaseService from "../../common/BaseService";
 import { IAddService } from "./dto/AddService";
 import { IEditService } from "./dto/EditService";
 import ServiceModel from './model';

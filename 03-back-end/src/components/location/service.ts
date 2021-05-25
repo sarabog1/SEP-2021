@@ -1,4 +1,4 @@
-import BaseService from '../../services/BaseService';
+import BaseService from '../../common/BaseService';
 import LocationModel from './model';
 import IErrorResponse from '../../common/IError.interface';
 import { IAddLocation } from './dto/AddLocation';

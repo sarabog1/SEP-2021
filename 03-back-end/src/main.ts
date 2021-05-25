@@ -7,55 +7,71 @@ import IApplicationResorces from './common/IApplicationResorces.interface';
 import Router from "./router";
 import StyllistRouter from './components/hairStyllist/router';
 import LocationRouter from './components/location/router';
-import ServiceRouter from "./service/router";
+import ServiceRouter from './components/service/router';
+import SalonService from "./components/salon/service";
+import StyllistService from "./components/hairStyllist/service";
+import LocationService from "./components/location/service";
+import ServiceService from "./components/service/service";
 
 async function main() {
     const application: express.Application = express();
 
-application.use(cors());
-application.use(express.json());
+    application.use(cors());
+    application.use(express.json());
+ ;
 
-const resources: IApplicationResorces = {
-    databaseConnection: await mysql2.createConnection({
-        host: Config.database.host,
-        port: Config.database.port,
-        user: Config.database.user,
-        password: Config.database.password,
-        database: Config.database.database,
-        charset: Config.database.charset,
-        timezone: Config.database.timezone,
-        supportBigNumbers: true,
-    }),
+    const resources: IApplicationResorces = {
+        databaseConnection: await mysql2.createConnection({
+            host: Config.database.host,
+            port: Config.database.port,
+            user: Config.database.user,
+            password: Config.database.password,
+            database: Config.database.database,
+            charset: Config.database.charset,
+            timezone: Config.database.timezone,
+            supportBigNumbers: true,
+        }),
+    }
+
+    resources.databaseConnection.connect();
+
+    resources.services = {
+        salonService: new SalonService(resources),
+        styllistService:  new StyllistService(resources),
+        locationService:  new LocationService(resources),
+        serviceService:  new ServiceService(resources),
+    };
+
+    application.use(
+        Config.server.static.route,
+        express.static(Config.server.static.path, {
+            index: Config.server.static.index,
+            cacheControl: Config.server.static.cacheControl,
+            maxAge: Config.server.static.maxAge,
+            etag: Config.server.static.etag,
+            dotfiles: Config.server.static.dotfiles,
+        }),
+    );
+
+    Router.setupRoutes(application, resources, [
+        new SalonRouter(),
+        new StyllistRouter(),
+        new LocationRouter(),
+        new ServiceRouter(),
+        // ...
+    ]);
+
+    application.use((req, res) => {
+        res.sendStatus(404);
+    });
+
+    application.use((err, req, res, next) => {
+        res.status(err.status).send(err.type);
+    });
+
+    application.listen(Config.server.port);
 }
 
-resources.databaseConnection.connect();
-application.use(
-    Config.server.static.route, express.static(Config.server.static.path, {
-    index: Config.server.static.index,
-    cacheControl: Config.server.static.cacheControl,
-    maxAge: Config.server.static.maxAge,
-    etag: Config.server.static.etag,
-    dotfiles: Config.server.static.dotfiles,
-    
-    }),
-);
-Router.setupRoutes(application, resources, [
-   new SalonRouter(),
-   new StyllistRouter(),
-   new LocationRouter(),
-   new ServiceRouter(),
-]);
-
-
-application.use((req, res)=>{
-    res.sendStatus(404);
-});
-
-application.use((err, req, res, next) => {
-    res.status(err.status).send(err.type);
-})
-application.listen(Config.server.port);
-}
 main();
 
 

@@ -1,14 +1,14 @@
-import IRouter from "../common/IRouter.interface";
+import IRouter from "../../common/IRouter.interface";
 import * as express from "express";
-import IApplicationResorces from "../common/IApplicationResorces.interface";
-import ServiceService from './service';
+import IApplicationResorces from "../../common/IApplicationResorces.interface";
 import ServiceController from './controller';
+
 
 export default class ServiceRouter implements IRouter{
     public setupRoutes(application: express.Application, resources: IApplicationResorces){
 
-        const serviceService: ServiceService= new ServiceService(resources.databaseConnection);
-        const serviceController: ServiceController = new ServiceController(serviceService);
+        
+        const serviceController: ServiceController = new ServiceController(resources);
 
     application.get("/service",     serviceController.getAll.bind(serviceController));
     application.get("/service/:id", serviceController.getById.bind(serviceController));

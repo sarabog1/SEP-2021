@@ -1,20 +1,16 @@
 import ServiceService from "./service";
 import {Request, Response, NextFunction} from "express";
 import ServiceModel from './model';
-import IErrorResponse from "../common/IError.interface";
+import IErrorResponse from "../../common/IError.interface";
 import { IAddService, IAddServiceValidator } from "./dto/AddService";
 import { IEditService, IEditServiceValidator } from "./dto/EditService";
-import { IEditSalon } from "../components/salon/dto/EditSalon";
+import BaseController from '../../common/BaseController';
 
 
-class ServiceController{
-    private serviceService: ServiceService;
-
-    constructor(serviceService: ServiceService) {
-        this.serviceService = serviceService;
-    }
+class ServiceController extends BaseController{
+    
     async getAll(req: Request, res: Response, next: NextFunction) {
-        const salons = await this.serviceService.getAll();
+        const salons = await this.services.serviceService.getAll();
 
         res.send(salons);
     }
@@ -26,7 +22,7 @@ class ServiceController{
             res.sendStatus(400);
             return;
         }
-        const data: ServiceModel|null|IErrorResponse = await this.serviceService.getById(serviceId);
+        const data: ServiceModel|null|IErrorResponse = await this.services.serviceService.getById(serviceId);
         if(data === null){
             res.sendStatus(404);
             return;
@@ -44,7 +40,7 @@ class ServiceController{
         }
 
         
-       const result = await this.serviceService.add(data as IAddService);
+       const result = await this.services.serviceService.add(data as IAddService);
         
        res.send(result);
     }
@@ -61,7 +57,7 @@ class ServiceController{
             return;
         }
 
-        const result = await this.serviceService.getById(serviceId)
+        const result = await this.services.serviceService.getById(serviceId)
 
         if(result === null){
             res.sendStatus(404);
@@ -75,7 +71,7 @@ class ServiceController{
 
         
 
-       res.send(await this.serviceService.edit(serviceId, req.body as IEditService));
+       res.send(await this.services.serviceService.edit(serviceId, req.body as IEditService));
         
 
     }
@@ -89,7 +85,7 @@ class ServiceController{
             return;
         }
 
-        res.send(await this.serviceService.delete(serviceId));
+        res.send(await this.services.serviceService.delete(serviceId));
     }
 
     }

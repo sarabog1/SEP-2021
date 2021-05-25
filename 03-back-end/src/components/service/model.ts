@@ -1,4 +1,4 @@
-import IModel from "../common/IModel.interface";
+import IModel from "../../common/IModel.interface";
 
 
 class ServiceModel implements IModel{

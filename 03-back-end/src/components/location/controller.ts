@@ -4,16 +4,13 @@ import LocationModel from './model';
 import IErrorResponse from '../../common/IError.interface';
 import { IAddLocation, IAddLocationValidator } from './dto/AddLocation';
 import { IEditLocation, IEditLocationValidator } from './dto/EditLocation';
+import BaseController from '../../common/BaseController';
 
-class LocationController{
-    private locationService: LocationService;
-
-    constructor(locationService: LocationService) {
-        this.locationService = locationService;
-    }
+class LocationController extends BaseController{
+    
 
     async getAll(req: Request, res: Response, next: NextFunction) {
-        const locations = await this.locationService.getAll();
+        const locations = await this.services.locationService.getAll();
 
         res.send(locations);
     }
@@ -25,7 +22,7 @@ class LocationController{
             res.sendStatus(400);
             return;
         }
-        const data: LocationModel|null|IErrorResponse = await this.locationService.getById(locationId);
+        const data: LocationModel|null|IErrorResponse = await this.services.locationService.getById(locationId);
         if(data === null){
             res.sendStatus(404);
             return;
@@ -44,7 +41,7 @@ class LocationController{
         }
 
         
-       const result = await this.locationService.add(data as IAddLocation);
+       const result = await this.services.locationService.add(data as IAddLocation);
         
        res.send(result);
     }
@@ -62,7 +59,7 @@ class LocationController{
             return;
         }
 
-        const result = await this.locationService.getById(locationId)
+        const result = await this.services.locationService.getById(locationId)
 
         if(result === null){
             res.sendStatus(404);
@@ -76,7 +73,7 @@ class LocationController{
 
         
 
-       res.send(await this.locationService.edit(locationId, req.body as IEditLocation));
+       res.send(await this.services.locationService.edit(locationId, req.body as IEditLocation));
         
 
     }
@@ -91,7 +88,7 @@ class LocationController{
             return;
         }
 
-        res.send(await this.locationService.delete(locationId));
+        res.send(await this.services.locationService.delete(locationId));
     }
 }
 

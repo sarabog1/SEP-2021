@@ -8,9 +8,7 @@ import IRouter from "../../common/IRouter.interface";
 
 export default class SalonRouter implements IRouter{
     public setupRoutes(application: express.Application, resources: IApplicationResorces){
-
-        const salonService: SalonService= new SalonService(resources.databaseConnection);
-        const salonController: SalonController= new SalonController(salonService);
+        const salonController: SalonController= new SalonController(resources.services.salonService);
 
     application.get("/salon",     salonController.getAll.bind(salonController));
     application.get("/salon/:id", salonController.getById.bind(salonController));

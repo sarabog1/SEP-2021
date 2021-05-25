@@ -4,16 +4,13 @@ import SalonModel from './model';
 import { IAddSalon, IAddSalonValidator } from './dto/AddSalon';
 import IErrorResponse from '../../common/IError.interface';
 import { IEditSalon, IEditSalonValidator } from './dto/EditSalon';
+import BaseController from '../../common/BaseController';
 
 
-class SalonController{
-    private salonService: SalonService;
-
-    constructor(salonService: SalonService) {
-        this.salonService = salonService;
-    }
+class SalonController extends BaseController{
+   
     async getAll(req: Request, res: Response, next: NextFunction) {
-        const salons = await this.salonService.getAll();
+        const salons = await this.services.salonService.getAll();
 
         res.send(salons);
     }
@@ -25,7 +22,7 @@ class SalonController{
             res.sendStatus(400);
             return;
         }
-        const data: SalonModel|null|IErrorResponse = await this.salonService.getById(salonId);
+        const data: SalonModel|null|IErrorResponse = await this.services.salonService.getById(salonId);
         if(data === null){
             res.sendStatus(404);
             return;
@@ -43,7 +40,7 @@ class SalonController{
         }
 
         
-       const result = await this.salonService.add(data as IAddSalon);
+       const result = await this.services.salonService.add(data as IAddSalon);
         
        res.send(result);
     }
@@ -62,7 +59,7 @@ class SalonController{
             res.status(400).send(IEditSalonValidator.errors);
         }
 
-        const result = await this.salonService.edit(data as IEditSalon, salonId);
+        const result = await this.services.salonService.edit(data as IEditSalon, salonId);
         
 
         res.send(result);
@@ -78,7 +75,7 @@ class SalonController{
             return;
         }
 
-        res.send(await this.salonService.delete(salonId));
+        res.send(await this.services.salonService.delete(salonId));
     }
 
     }

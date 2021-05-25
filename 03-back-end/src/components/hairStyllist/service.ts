@@ -1,4 +1,4 @@
-import BaseService from '../../services/BaseService';
+import BaseService from '../../common/BaseService';
 import StyllistModel from './model';
 import IModelAdapterOptions from '../../common/IModelAdapterOptionst.interface';
 import SalonService from '../salon/service';
@@ -13,16 +13,7 @@ class StyllistModelAdapterOptions implements IModelAdapterOptions{
 }
 
 class StyllistService extends BaseService<StyllistModel>{
-
-    private salonService: SalonService;
-
-    constructor(db: mysql2.Connection) {
-        super(db);
-
-        this.salonService = new SalonService(this.db);
-    }
-
-    protected async adaptModel(data: any):Promise<StyllistModel>{
+    protected async adaptModel(data: any, options:Partial<StyllistModelAdapterOptions>):Promise<StyllistModel>{
              const item: StyllistModel = new StyllistModel();
 
             item.hairStyllistId = +(data?.hair_styllist_id);
@@ -30,8 +21,8 @@ class StyllistService extends BaseService<StyllistModel>{
             item.surname = data?.surname;
             item.salonId = +(data?.salon_id);
 
-            if (item.salonId){
-                const result = await this.salonService.getById(item.salonId);
+            if (options.loadSalon && item.salonId){
+                const result = await this.services.salonService.getById(item.salonId);
                 item.salon = result as SalonModel;
             }
 
