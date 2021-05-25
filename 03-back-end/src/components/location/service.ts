@@ -2,6 +2,7 @@ import BaseService from '../../services/BaseService';
 import LocationModel from './model';
 import IErrorResponse from '../../common/IError.interface';
 import { IAddLocation } from './dto/AddLocation';
+import { IEditLocation } from './dto/EditLocation';
 
 
 class LocationService extends BaseService<LocationModel>{
@@ -44,6 +45,61 @@ public async add(data: IAddLocation): Promise<LocationModel|IErrorResponse>{
          }));
     });
 
+}
+
+public async edit(data: IEditLocation, locationId: number): Promise<LocationModel|null|IErrorResponse>{
+    const result = await this.getById(locationId);
+    if (result === null) {
+        return null;
+    }
+
+    if (!(result instanceof LocationModel)) {
+        return result;
+    }
+    return new Promise<LocationModel|IErrorResponse>(async resolve => {
+        const sql = "UPDATE location SET street = ?, number = ? WHERE location_id = ?;";
+        this.db.execute(sql, [data.street, data.number, locationId])
+         .then(async result => {
+             
+             resolve(await this.getById(locationId));
+         })
+         .catch(error => resolve({
+             errorCode: error?.errno,
+             errorMessage: error?.sqlMessage
+         }));
+    })
+
+   }
+
+   public async delete(locationId: number): Promise<IErrorResponse>{
+    return new Promise<IErrorResponse>(resolve => {
+        const sql = "DELETE FROM location WHERE location_id = ?;";
+        this.db.execute(sql, [locationId])
+         .then(async result =>{
+             const  deleteInfo: any = result[0];
+             const deletedRowCount: number = +(deleteInfo?.affectedRows);
+
+             if (deletedRowCount === 1) {
+                 resolve({
+                     errorCode: 0,
+                     errorMessage: "Record deleted"   
+                 });
+             }
+             else {
+                 resolve({
+                     errorCode: -1,
+                     errorMessage: "This location could not be deleted"   
+                 })
+             }
+
+         })
+         .catch(error =>{
+             resolve({
+                 errorCode: error?.errno,
+                 errorMessage: error?.sqlMessage   
+             })
+         })
+    })
 }
 
 

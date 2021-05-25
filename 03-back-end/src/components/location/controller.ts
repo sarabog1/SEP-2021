@@ -3,6 +3,7 @@ import {Request, Response, NextFunction} from "express";
 import LocationModel from './model';
 import IErrorResponse from '../../common/IError.interface';
 import { IAddLocation, IAddLocationValidator } from './dto/AddLocation';
+import { IEditLocation, IEditLocationValidator } from './dto/EditLocation';
 
 class LocationController{
     private locationService: LocationService;
@@ -46,6 +47,41 @@ class LocationController{
        const result = await this.locationService.add(data as IAddLocation);
         
        res.send(result);
+    }
+
+    async edit(req: Request, res:Response, next: NextFunction){
+        const id: string = req.params.id;
+        const locationId: number = +id;
+
+        if (locationId <= 0) {
+            res.status(400).send("Invalid ID number.");
+            return;
+        }
+
+        const data = req.body;
+
+        if (!IEditLocationValidator(data)){
+            res.status(400).send(IEditLocationValidator.errors);
+        }
+
+        const result = await this.locationService.edit(data as IEditLocation, locationId);
+        
+
+        res.send(result);
+
+    }
+
+    async deleteById(req: Request, res:Response, next: NextFunction){
+        const id: string = req.params.id;
+
+        const locationId: number = +id;
+
+        if (locationId <= 0){
+            res.status(400).send("Inavild ID number");
+            return;
+        }
+
+        res.send(await this.locationService.delete(locationId));
     }
 }
 
