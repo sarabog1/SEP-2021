@@ -2,6 +2,7 @@ import LocationService from './service';
 import {Request, Response, NextFunction} from "express";
 import LocationModel from './model';
 import IErrorResponse from '../../common/IError.interface';
+import { IAddLocation, IAddLocationValidator } from './dto/AddLocation';
 
 class LocationController{
     private locationService: LocationService;
@@ -31,6 +32,20 @@ class LocationController{
 
        res.status(500).send(data);
        
+    }
+
+    async add(req: Request, res:Response, next: NextFunction){
+        const data = req.body;
+
+        if(!IAddLocationValidator(data)){
+            res.status(400).send(IAddLocationValidator.errors);
+            return;
+        }
+
+        
+       const result = await this.locationService.add(data as IAddLocation);
+        
+       res.send(result);
     }
 }
 

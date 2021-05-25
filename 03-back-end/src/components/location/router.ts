@@ -12,5 +12,6 @@ export default class LocationRouter implements IRouter{
 
         application.get("/location",     locationController.getAll.bind(locationController));
         application.get("/location/:id", locationController.getById.bind(locationController));
+        application.post("/location",     locationController.add.bind(locationController));
     }
 }
