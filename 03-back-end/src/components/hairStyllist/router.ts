@@ -1,8 +1,6 @@
 import * as express from "express";
-
 import IApplicationResorces from '../../common/IApplicationResorces.interface';
 import IRouter from "../../common/IRouter.interface";
-
 import StyllistController from "./controller";
 
 

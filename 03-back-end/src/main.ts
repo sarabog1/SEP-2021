@@ -12,6 +12,10 @@ import SalonService from "./components/salon/service";
 import StyllistService from "./components/hairStyllist/service";
 import LocationService from "./components/location/service";
 import ServiceService from "./components/service/service";
+import CustomerService from './components/customer/service';
+import CustomerRouter from "./components/customer/router";
+import AvailableService from "./components/availableAppointment/service";
+import AvailableRouter from "./components/availableAppointment/router";
 
 async function main() {
     const application: express.Application = express();
@@ -21,17 +25,17 @@ async function main() {
  ;
 
     const resources: IApplicationResorces = {
-        databaseConnection: await mysql2.createConnection({
-            host: Config.database.host,
-            port: Config.database.port,
-            user: Config.database.user,
-            password: Config.database.password,
-            database: Config.database.database,
-            charset: Config.database.charset,
-            timezone: Config.database.timezone,
-            supportBigNumbers: true,
-        }),
-    }
+    databaseConnection: await mysql2.createConnection({
+        host: Config.database.host,
+        port: Config.database.port,
+        user: Config.database.user,
+        password: Config.database.password,
+        database: Config.database.database,
+        charset: Config.database.charset,
+        timezone: Config.database.timezone,
+        supportBigNumbers: true,
+    }),
+}
 
     resources.databaseConnection.connect();
 
@@ -40,6 +44,8 @@ async function main() {
         styllistService:  new StyllistService(resources),
         locationService:  new LocationService(resources),
         serviceService:  new ServiceService(resources),
+        customerService: new CustomerService(resources),
+        availableService: new AvailableService(resources),
     };
 
     application.use(
@@ -58,6 +64,8 @@ async function main() {
         new StyllistRouter(),
         new LocationRouter(),
         new ServiceRouter(),
+        new CustomerRouter(),
+        new AvailableRouter(),
         // ...
     ]);
 

@@ -10,11 +10,16 @@ import BaseController from '../../common/BaseController';
 class SalonController extends BaseController{
    
     async getAll(req: Request, res: Response, next: NextFunction) {
-        const salons = await this.services.salonService.getAll();
+        const salons = await this.services.salonService.getAll({
+            loadLocation: true,
+            loadService: true,
+            loadHairStyllist: true,
+            
+        });
 
         res.send(salons);
     }
-    async getById(req: Request, res: Response, next: NextFunction) {
+    async getById(req: Request, res: Response, next: NextFunction ) {
         const id: string = req.params.id;
         const salonId: number = +id;
 
@@ -22,7 +27,12 @@ class SalonController extends BaseController{
             res.sendStatus(400);
             return;
         }
-        const data: SalonModel|null|IErrorResponse = await this.services.salonService.getById(salonId);
+        const data: SalonModel|null|IErrorResponse = await this.services.salonService.getById(salonId, {
+            loadLocation: true,
+            loadService: true,
+            loadHairStyllist: true,
+            
+        });
         if(data === null){
             res.sendStatus(404);
             return;

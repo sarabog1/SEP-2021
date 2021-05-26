@@ -1,8 +1,6 @@
 import BaseService from '../../common/BaseService';
 import StyllistModel from './model';
 import IModelAdapterOptions from '../../common/IModelAdapterOptionst.interface';
-import SalonService from '../salon/service';
-import * as mysql2 from "mysql2/promise";
 import SalonModel from '../salon/model';
 import IErrorResponse from '../../common/IError.interface';
 import { IAddStyllist } from './dto/AddStyllist';

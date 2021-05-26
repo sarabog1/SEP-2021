@@ -1,4 +1,4 @@
-import LocationService from './service';
+
 import {Request, Response, NextFunction} from "express";
 import LocationModel from './model';
 import IErrorResponse from '../../common/IError.interface';

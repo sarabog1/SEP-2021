@@ -1,5 +1,4 @@
 import * as express from "express";
-import SalonService from './service';
 import SalonController from './controller';
 import IApplicationResorces from '../../common/IApplicationResorces.interface';
 import IRouter from "../../common/IRouter.interface";
@@ -8,7 +7,7 @@ import IRouter from "../../common/IRouter.interface";
 
 export default class SalonRouter implements IRouter{
     public setupRoutes(application: express.Application, resources: IApplicationResorces){
-        const salonController: SalonController= new SalonController(resources.services.salonService);
+        const salonController: SalonController= new SalonController(resources);
 
     application.get("/salon",     salonController.getAll.bind(salonController));
     application.get("/salon/:id", salonController.getById.bind(salonController));

@@ -29,12 +29,12 @@ class SalonService extends BaseService<SalonModel>{
            item.hairStyllist = result as StyllistModel;
         }
 
-        if (  item.serviceId){
+        if ( options.loadService && item.serviceId){
             const result = await this.services.serviceService.getById(item.serviceId);
             item.service = result as ServiceModel;
         }
 
-        if ( item.locationId){
+        if (options.loadLocation && item.locationId){
             const result = await this.services.locationService.getById(item.locationId);
             item.location = result as LocationModel;
         }
@@ -45,11 +45,11 @@ class SalonService extends BaseService<SalonModel>{
         return item;
     }
 
-    public async getAll(): Promise<SalonModel[]|IErrorResponse> {
+    public async getAll(options: Partial<SalonModelAdapterOptions> = { }): Promise<SalonModel[]|IErrorResponse> {
         return await this.getAllFromTable("salon");
         
     }
-    public async getById(salonId: number): Promise<SalonModel|null|IErrorResponse>{
+    public async getById(salonId: number,options: Partial<SalonModelAdapterOptions> = { }): Promise<SalonModel|null|IErrorResponse>{
         return await this.getByIdFromTable("salon", salonId);
         
 
