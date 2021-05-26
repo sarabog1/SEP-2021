@@ -3,7 +3,7 @@ import StyllistModel from '../hairStyllist/model';
 
 
 class AvailableModel implements IModel{
-    availableId: number;
+    availableAppointmentId: number;
     startsAt: Date;
     endAt: Date;
     isAvailable: boolean;

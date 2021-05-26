@@ -40,17 +40,21 @@ INSERT INTO `admin` (`admin_id`, `username`, `password_hash`, `created_at`) VALU
 DROP TABLE IF EXISTS `appointment`;
 CREATE TABLE IF NOT EXISTS `appointment` (
   `appointment_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `available_appointemt_id` int(10) unsigned NOT NULL,
+  `available_appointment_id` int(10) unsigned NOT NULL,
   `customer_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`appointment_id`),
-  KEY `fk_appointment_available_appointment_id` (`available_appointemt_id`),
-  KEY `fk_appointment_customer_appointment_id` (`customer_id`),
-  CONSTRAINT `fk_appointment_available_appointment_id` FOREIGN KEY (`available_appointemt_id`) REFERENCES `available_appointment` (`available_appointment_id`) ON UPDATE CASCADE,
-  CONSTRAINT `fk_appointment_customer_appointment_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `fk_appointment_available_appointment_id` (`available_appointment_id`) USING BTREE,
+  KEY `fk_customer_appointment_id` (`customer_id`),
+  CONSTRAINT `fk_available_appointment_appointment_id` FOREIGN KEY (`available_appointment_id`) REFERENCES `available_appointment` (`available_appointment_id`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_customer_appointment_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table salon_app.appointment: ~0 rows (approximately)
+-- Dumping data for table salon_app.appointment: ~3 rows (approximately)
 /*!40000 ALTER TABLE `appointment` DISABLE KEYS */;
+INSERT INTO `appointment` (`appointment_id`, `available_appointment_id`, `customer_id`) VALUES
+	(1, 4, 1),
+	(2, 7, 1),
+	(4, 2, 3);
 /*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
 
 -- Dumping structure for table salon_app.available_appointment
@@ -62,16 +66,18 @@ CREATE TABLE IF NOT EXISTS `available_appointment` (
   `is_available` tinyint(1) NOT NULL DEFAULT 1,
   `hair_styllist_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`available_appointment_id`),
-  KEY `fk_appointment_styllist_appointment_id` (`hair_styllist_id`),
-  CONSTRAINT `fk_appointment_styllist_appointment_id` FOREIGN KEY (`hair_styllist_id`) REFERENCES `hair_styllist` (`hair_styllist_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `uq_available_appointment_starts_at_end_at` (`starts_at`,`end_at`),
+  KEY `fk_styllist_appointment_id` (`hair_styllist_id`),
+  CONSTRAINT `fk_styllist_appointment_id` FOREIGN KEY (`hair_styllist_id`) REFERENCES `hair_styllist` (`hair_styllist_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Dumping data for table salon_app.available_appointment: ~0 rows (approximately)
+-- Dumping data for table salon_app.available_appointment: ~4 rows (approximately)
 /*!40000 ALTER TABLE `available_appointment` DISABLE KEYS */;
 INSERT INTO `available_appointment` (`available_appointment_id`, `starts_at`, `end_at`, `is_available`, `hair_styllist_id`) VALUES
 	(1, '2021-06-26 11:00:00', '2021-06-06 11:30:00', 1, 19),
 	(2, '2021-05-28 10:56:16', '2021-05-28 11:30:00', 1, 17),
-	(3, '2021-05-26 10:56:55', '2021-05-26 11:30:00', 0, 13);
+	(4, '2021-07-28 10:56:16', '2021-07-28 11:56:16', 1, 13),
+	(7, '2021-07-28 11:56:16', '2021-07-28 12:56:16', 1, 13);
 /*!40000 ALTER TABLE `available_appointment` ENABLE KEYS */;
 
 -- Dumping structure for table salon_app.customer
@@ -84,11 +90,10 @@ CREATE TABLE IF NOT EXISTS `customer` (
   PRIMARY KEY (`customer_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumping data for table salon_app.customer: ~3 rows (approximately)
+-- Dumping data for table salon_app.customer: ~2 rows (approximately)
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
 INSERT INTO `customer` (`customer_id`, `name`, `surname`, `phone`) VALUES
 	(1, 'Milena', 'Ilic', '06555623'),
-	(2, 'test', 'test', '065556235'),
 	(3, 'Sara', 'Bogi', '0694563432');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 
@@ -100,8 +105,8 @@ CREATE TABLE IF NOT EXISTS `hair_styllist` (
   `surname` varchar(50) NOT NULL,
   `salon_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`hair_styllist_id`),
-  KEY `fk_hair_styllist_salon_hair_styllist_id` (`salon_id`),
-  CONSTRAINT `fk_hair_styllist_salon_hair_styllist_id` FOREIGN KEY (`salon_id`) REFERENCES `salon` (`salon_id`) ON UPDATE CASCADE
+  KEY `fk_salon_hair_styllist_id` (`salon_id`),
+  CONSTRAINT `fk_salon_hair_styllist_id` FOREIGN KEY (`salon_id`) REFERENCES `salon` (`salon_id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table salon_app.hair_styllist: ~4 rows (approximately)
@@ -140,10 +145,10 @@ CREATE TABLE IF NOT EXISTS `salon` (
   `location_id` int(10) unsigned NOT NULL,
   `service_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`salon_id`),
-  KEY `fk_salon_location_salon_id` (`location_id`),
-  KEY `fk_salon_service_id` (`service_id`),
-  CONSTRAINT `fk_salon_location_salon_id` FOREIGN KEY (`location_id`) REFERENCES `location` (`location_id`) ON UPDATE CASCADE,
-  CONSTRAINT `fk_salon_service_id` FOREIGN KEY (`service_id`) REFERENCES `service` (`service_id`) ON UPDATE CASCADE
+  KEY `fk_location_salon_id` (`location_id`),
+  KEY `fk_service_salon_id` (`service_id`),
+  CONSTRAINT `fk_location_salon_id` FOREIGN KEY (`location_id`) REFERENCES `location` (`location_id`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_service_salon_id` FOREIGN KEY (`service_id`) REFERENCES `service` (`service_id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table salon_app.salon: ~3 rows (approximately)

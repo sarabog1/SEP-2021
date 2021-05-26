@@ -7,7 +7,7 @@ import { IAddAvailable } from "./dto/AddAvailable";
 import { IEditAvailable } from "./dto/EditAvailable";
 
 class AvailableModelOptions implements IModelAdapterOptions{
-    loadHaiststyllist: false;
+    loadHaiststyllist: true;
 }
 
 class AvailableService extends BaseService<AvailableModel>{
@@ -16,30 +16,27 @@ class AvailableService extends BaseService<AvailableModel>{
     protected async adaptModel(data: any, options:Partial<AvailableModelOptions>):Promise<AvailableModel>{
         const item: AvailableModel = new AvailableModel();
 
-       item.availableId = +(data?.available_appointment_id);
+       item.availableAppointmentId = +(data?.available_appointment_id);
        item.startsAt = data?.starts_at;
        item.endAt = data?.end_at;
        item.isAvailable = data?.is_available;
        item.hairStyllistId = data?.hair_styllist_id;
-
-
-        if(item.hairStyllist){
-            const result = await this.services.styllistService.getById(item.hairStyllistId);
-            item.hairStyllist = result as StyllistModel;
-        }
+       const result = await this.services.styllistService.getById(item.hairStyllistId);
+       item.hairStyllist = result as StyllistModel;
+        
 
         return item;
 
         
-
+  
 }
 
-public async getAll(): Promise<AvailableModel[]|IErrorResponse>{
+public async getAll(options: Partial<AvailableModelOptions> = { }): Promise<AvailableModel[]|IErrorResponse>{
     return await this.getAllFromTable("available_appointment");
 }
 
-public async getById(availableId: number): Promise<AvailableModel|null|IErrorResponse>{
-    return await this.getByIdFromTable("available_appointment", availableId);
+public async getById(availableAppointmentId: number): Promise<AvailableModel|null|IErrorResponse>{
+    return await this.getByIdFromTable("available_appointment", availableAppointmentId);
 }
 
 public async getAllByStyllist(hairStyllistId: number): Promise<AvailableModel[]|IErrorResponse>{
@@ -53,8 +50,8 @@ public async add(data: IAddAvailable): Promise<AvailableModel|IErrorResponse>{
          .then(async result => {
              const insertInfo: any = result[0];
 
-             const newAvailableId: number = +(insertInfo?.insertId);
-             resolve(await this.getById(newAvailableId));
+             const newavailableAppointmentId: number = +(insertInfo?.insertId);
+             resolve(await this.getById(newavailableAppointmentId));
          })
          .catch(error => resolve({
              errorCode: error?.errno,
@@ -64,12 +61,12 @@ public async add(data: IAddAvailable): Promise<AvailableModel|IErrorResponse>{
 
 }
 
-public async edit(availableId: number, data: IEditAvailable): Promise<AvailableModel|IErrorResponse>{
+public async edit(availableAppointmentId: number, data: IEditAvailable): Promise<AvailableModel|IErrorResponse>{
     return new  Promise<AvailableModel|IErrorResponse>(resolve => {
         const sql = "UPDATE available_appointment SET is_available = ? WHERE available_appointment_id = ?;";
-        this.db.execute(sql, [ data.isAvailable, availableId ])
+        this.db.execute(sql, [ data.isAvailable, availableAppointmentId ])
             .then(async result => {
-                resolve(await this.getById(availableId));
+                resolve(await this.getById(availableAppointmentId));
             })
             .catch(error => {
                 resolve({
@@ -81,10 +78,10 @@ public async edit(availableId: number, data: IEditAvailable): Promise<AvailableM
     });
  }
 
-   public async delete(availableId: number): Promise<IErrorResponse>{
+   public async delete(availableAppointmentId: number): Promise<IErrorResponse>{
     return new Promise<IErrorResponse>(resolve => {
         const sql = "DELETE FROM available_appointment WHERE available_appointment_id = ?;";
-        this.db.execute(sql, [availableId])
+        this.db.execute(sql, [availableAppointmentId])
          .then(async result =>{
              const  deleteInfo: any = result[0];
              const deletedRowCount: number = +(deleteInfo?.affectedRows);

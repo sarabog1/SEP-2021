@@ -10,19 +10,19 @@ class AvailableController extends BaseController{
     
 
     async getAll(req: Request, res: Response, next: NextFunction) {
-        const locations = await this.services.availableService.getAll();
+        const available = await this.services.availableService.getAll({loadHaiststyllist: true});
 
-        res.send(locations);
+        res.send(available);
     }
     async getById(req: Request, res: Response, next: NextFunction) {
         const id: string = req.params.id;
-        const availableId: number = +id;
+        const availableAppointmentId: number = +id;
 
-        if (availableId <=0){
+        if (availableAppointmentId <=0){
             res.sendStatus(400);
             return;
         }
-        const data: LocationModel|null|IErrorResponse = await this.services.availableService.getById(availableId);
+        const data: LocationModel|null|IErrorResponse = await this.services.availableService.getById(availableAppointmentId);
         if(data === null){
             res.sendStatus(404);
             return;
@@ -53,9 +53,9 @@ class AvailableController extends BaseController{
     }
 
     public async edit(req: Request, res: Response){
-        const availableId = +(req.params.id);
+        const availableAppointmentId = +(req.params.id);
 
-        if (availableId <= 0){
+        if (availableAppointmentId <= 0){
             res.sendStatus(400);
             return;
         }
@@ -65,7 +65,7 @@ class AvailableController extends BaseController{
             return;
         }
 
-        const result = await this.services.availableService.getById(availableId)
+        const result = await this.services.availableService.getById(availableAppointmentId)
 
         if(result === null){
             res.sendStatus(404);
@@ -79,7 +79,7 @@ class AvailableController extends BaseController{
 
         
 
-       res.send(await this.services.availableService.edit(availableId, req.body as IEditAvailable));
+       res.send(await this.services.availableService.edit(availableAppointmentId, req.body as IEditAvailable));
         
 
     }
@@ -87,14 +87,14 @@ class AvailableController extends BaseController{
     async deleteById(req: Request, res:Response, next: NextFunction){
         const id: string = req.params.id;
 
-        const availableId: number = +id;
+        const availableAppointmentId: number = +id;
 
-        if (availableId <= 0){
+        if (availableAppointmentId <= 0){
             res.status(400).send("Inavild ID number");
             return;
         }
 
-        res.send(await this.services.availableService.delete(availableId));
+        res.send(await this.services.availableService.delete(availableAppointmentId));
     }
 }
 
