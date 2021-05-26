@@ -18,6 +18,8 @@ import AvailableService from "./components/availableAppointment/service";
 import AvailableRouter from "./components/availableAppointment/router";
 import AppointmentService from "./components/appointment/service";
 import AppointmentRouter from "./components/appointment/router";
+import AdminService from './components/admin/service';
+import AdminRouter from "./components/admin/router";
 
 async function main() {
     const application: express.Application = express();
@@ -49,6 +51,7 @@ async function main() {
         customerService: new CustomerService(resources),
         availableService: new AvailableService(resources),
         appointmentService: new AppointmentService(resources),
+        adminService: new AdminService(resources),
     };
 
     application.use(
@@ -70,6 +73,7 @@ async function main() {
         new CustomerRouter(),
         new AvailableRouter(),
         new AppointmentRouter(),
+        new AdminRouter(),
         // ...
     ]);
 
