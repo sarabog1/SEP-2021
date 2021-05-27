@@ -20,6 +20,7 @@ class AppointmentService extends BaseService<AppointmentModel>{
        item.appointmentId = +(data?.appointment_id);
        item.availableAppointmentId = data?.available_appointment_id;
        item.customerId = data?.customer_id;
+       item.email = data?.email;
        
 
 
@@ -51,8 +52,8 @@ public async getById(appointmentId: number): Promise<AppointmentModel|null|IErro
     
 public async add(data: IAddAppointment): Promise<AppointmentModel|IErrorResponse>{
     return new Promise<AppointmentModel|IErrorResponse>(async resolve => {
-        const sql = "INSERT appointment SET available_appointment_id = ?, customer_id = ?;";
-        this.db.execute(sql, [data.availableAppointmentId, data.customerId])
+        const sql = "INSERT appointment SET available_appointment_id = ?, customer_id = ?, email = ?;";
+        this.db.execute(sql, [data.availableAppointmentId, data.customerId, data.email])
          .then(async result => {
              const insertInfo: any = result[0];
 

@@ -5,6 +5,7 @@ class AppointmentModel implements IModel{
         appointmentId: number;
         availableAppointmentId: number;
         customerId: number;
+        email: string;
         available: AvailableModel;
         customer: CustomerModel;
 }

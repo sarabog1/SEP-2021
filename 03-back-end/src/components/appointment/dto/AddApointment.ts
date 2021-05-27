@@ -3,6 +3,7 @@ import Ajv from "ajv";
 interface IAddAppointment {
     availableAppointmentId: number;
     customerId: number;
+    email: string;
     
 }
 const ajv = new Ajv();
@@ -16,6 +17,10 @@ const IAddAppointmentValidator = ajv.compile({
         customerId: {
             type: "integer",
             minimum: 1,
+        },
+        email: {
+            type: "string",
+            minLength: 6,
         }
        
     },

@@ -12,5 +12,6 @@ export default class AppointmentRouter implements IRouter{
     application.get("/appointment",               appointmentController.getAll.bind(appointmentController));
     application.post("/appointment",              appointmentController.add.bind(appointmentController));
     application.delete("/appointment/:id",        appointmentController.deleteById.bind(appointmentController));
+    application.post("/auth/appointment/book",    appointmentController.bookAppointment.bind(appointmentController));
     }
 }

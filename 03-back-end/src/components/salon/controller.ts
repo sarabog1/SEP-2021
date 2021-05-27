@@ -5,6 +5,7 @@ import { IAddSalon, IAddSalonValidator } from './dto/AddSalon';
 import IErrorResponse from '../../common/IError.interface';
 import { IEditSalon, IEditSalonValidator } from './dto/EditSalon';
 import BaseController from '../../common/BaseController';
+import AppointmentModel from '../appointment/model';
 
 
 class SalonController extends BaseController{
@@ -41,6 +42,9 @@ class SalonController extends BaseController{
        res.status(500).send(data);
        
     }
+
+   
+
     async add(req: Request, res:Response, next: NextFunction){
         const data = req.body;
 
@@ -52,7 +56,10 @@ class SalonController extends BaseController{
         
        const result = await this.services.salonService.add(data as IAddSalon);
         
+
+       
        res.send(result);
+       
     }
     async edit(req: Request, res:Response, next: NextFunction){
         const id: string = req.params.id;
@@ -88,6 +95,9 @@ class SalonController extends BaseController{
         res.send(await this.services.salonService.delete(salonId));
     }
 
+
+    
+    
     }
 
     
