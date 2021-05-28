@@ -20,6 +20,38 @@ class AppointmentController extends BaseController{
 
         res.send(appointment);
     }
+    
+
+    async add(req: Request, res:Response, next: NextFunction){
+        const data = req.body;
+
+        if(!IAddAppointmentValidator(data)){
+            res.status(400).send(IAddAppointmentValidator.errors);
+            return;
+        }
+
+        
+       const result = await this.services.appointmentService.add(data as IAddAppointment);
+
+   
+
+       res.send(result);
+    }
+
+    
+
+    async deleteById(req: Request, res:Response, next: NextFunction){
+        const id: string = req.params.id;
+
+        const appointmentId: number = +id;
+
+        if (appointmentId <= 0){
+            res.status(400).send("Inavild ID number");
+            return;
+        }
+
+        res.send(await this.services.availableService.delete(appointmentId));
+    }
     public async sendAppointmentEmail(data: AppointmentModel): Promise<IErrorResponse>{
         return new Promise<IErrorResponse>(async resolve =>{
             const transport = nodemailer.createTransport({
@@ -78,38 +110,6 @@ class AppointmentController extends BaseController{
         });
         
         }
-
-    async add(req: Request, res:Response, next: NextFunction){
-        const data = req.body;
-
-        if(!IAddAppointmentValidator(data)){
-            res.status(400).send(IAddAppointmentValidator.errors);
-            return;
-        }
-
-        
-       const result = await this.services.appointmentService.add(data as IAddAppointment);
-
-   
-
-       res.send(result);
-    }
-
-    
-
-    async deleteById(req: Request, res:Response, next: NextFunction){
-        const id: string = req.params.id;
-
-        const appointmentId: number = +id;
-
-        if (appointmentId <= 0){
-            res.status(400).send("Inavild ID number");
-            return;
-        }
-
-        res.send(await this.services.availableService.delete(appointmentId));
-    }
-
     public async bookAppointment(req: Request, res: Response) {
         if (!IAddAppointmentValidator(req.body)) {
             return res.status(400).send(IAddAppointmentValidator.errors);
@@ -118,6 +118,9 @@ class AppointmentController extends BaseController{
         const result: AppointmentModel|IErrorResponse = await this.services.appointmentService.add(req.body as IAddAppointment);
 
         if (!(result instanceof AppointmentModel)) {
+            if (result.errorMessage.includes("uq_user_email")) {
+                return res.status(400).send("An account with this email already exists.");
+            }
 
             return res.status(400).send(result);
         }

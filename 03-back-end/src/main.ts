@@ -20,6 +20,7 @@ import AppointmentService from "./components/appointment/service";
 import AppointmentRouter from "./components/appointment/router";
 import AdminService from './components/admin/service';
 import AdminRouter from "./components/admin/router";
+import AuthRouter from "./components/auth/router";
 
 async function main() {
     const application: express.Application = express();
@@ -74,6 +75,7 @@ async function main() {
         new AvailableRouter(),
         new AppointmentRouter(),
         new AdminRouter(),
+        new AuthRouter()
         // ...
     ]);
 

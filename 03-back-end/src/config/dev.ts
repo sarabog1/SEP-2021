@@ -1,5 +1,6 @@
 import IConfig from '../common/IConfig.interface';
 import * as dotenv from "dotenv";
+import { readFileSync } from "fs";
 
 const dotEnvResult = dotenv.config();
 
@@ -36,6 +37,22 @@ const Config: IConfig = {
         password: process.env?.MAIL_PASSWORD,
         fromEmail: process.env?.MAIL_FROM,
         debug: true
+    },
+    auth:{
+        admin:{
+            algorithm:"RS256",
+            issuer:"localhost",
+            auth:{
+                duration: 60*60*24*7, // samo dok radio razvoj: 60*60*5
+                public:readFileSync("keystore/admin-auth.public", "utf-8"),
+                private:readFileSync("keystore/admin-auth.private", "utf-8"),
+            },
+            refresh:{
+                duration: 60*60*24*365, 
+                public:readFileSync("keystore/admin-refresh.public", "utf-8"),
+                private:readFileSync("keystore/admin-refresh.private", "utf-8"),
+            }
+        }
     }
 };
 
