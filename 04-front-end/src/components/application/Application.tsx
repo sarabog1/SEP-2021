@@ -21,7 +21,7 @@ export default function Application(props: any) {
           <Switch>
             <Route exact path="/" component={ HomePage } />
 
-            <Route path="/salons/:cid?"
+            <Route path="/salon/:cid?"
                    render={
                      (props: any) => {
                        return ( <SalonPage {...props} /> );

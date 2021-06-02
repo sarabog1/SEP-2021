@@ -1,6 +1,8 @@
-
+import axios from 'axios';
 import BasePage, { BasePageProperties } from '../BasePage/BasePage';
 import { Link } from "react-router-dom";
+import SalonModel from '../../../../03-back-end/src/components/salon/model';
+
 class SalonPageProperties extends BasePageProperties{
     match?: {
         params:{
@@ -11,10 +13,7 @@ class SalonPageProperties extends BasePageProperties{
 
 class SalonPageState{
     title: string="";
-    name: string ="";
-    salonId: number[]=[];
-    locationId: number[] = [];
-    serviceId: number[] = [];
+    salons: SalonModel[]=[];
 }
 
 export default class SalonPage extends BasePage<SalonPageProperties> {
@@ -25,10 +24,7 @@ export default class SalonPage extends BasePage<SalonPageProperties> {
 
         this.state = {
             title: "",
-            name: "",
-            salonId:[],
-            locationId: [],
-            serviceId: [],
+            salons: [],
         };
     } 
 
@@ -38,45 +34,63 @@ export default class SalonPage extends BasePage<SalonPageProperties> {
       return cid ? +(cid) : null;
     }
 
-    private getsalonData(){
+    private getSalonData(){
         const cId = this.getSalonId();
 
         if(cId === null){
-            this.setState({
-                title: "all salons",
-                name:"Salon1",
-                salonId: [1,2,3,4],
-                
-            }
-            )
+           this.apigetAllSalons();
         }
         else {
-            this.setState({
-                title: "Salon" + cId,
-                name:"Salon pod imenom" +cId,
-                salonId:[
-                    cId+2,
-                    
+            this.apiGetSalon(cId);
+    }
+    }
 
-                ],
-                locationId: [
-                    cId + 10,
-                    
-                ],
-                serviceId: [
-                    cId + 15,
+    private apigetAllSalons(){
+        axios({
+            method: "GET",
+            baseURL: "http://localhost/40080",
+            url:"/salon",
+            timeout: 10000,
+            headers: {
+                Authorization: "Bearer FAKE_TOKEN"
+            },
+            //withCredentials: true,
+            maxRedirects: 0,
+        })
+        .then(res =>{
+            if(!Array.isArray(res.data)){
+                throw new Error("Invalid data recived");
+            }
+
+
+        }) 
+        .catch(err =>{
+            const error = "" + err;
+            if(error.includes("404")){
+                this.setState({
+                    title:"No caracters found",
+                    salons: [],
                    
-                ]
-            })
-        }
+                })
+            } else {
+                this.setState({
+                    title:"Unable to find",
+                    salons: [],
+                    
+                })
+            }
+        })
+    }
+    private apiGetSalon(cId: number){
+
     }
 
     componentDidMount(){
-        this.getsalonData();
+        this.getSalonData();
     }
     componentDidUpdate(prevProps: SalonPageProperties, prewState: SalonPageState){
         if (prevProps.match?.params.cid !== this.props.match?.params.cid){
-            this.getsalonData();
+            this.getSalonData();
         }
     }
 
@@ -89,12 +103,10 @@ export default class SalonPage extends BasePage<SalonPageProperties> {
             
             <ul>
             {
-                this.state.salonId.map(sal => (
-                    <li>
-                        <Link to={"/salons/" + sal }>
-                            Ime {this.state.name}
-                            Lokacija {sal}
-                            Usluga {sal}
+                this.state.salons.map(salon => (
+                    <li key={"salon-link" + salon.salonId}>
+                        <Link to={"/salons/" + salon.salonId }>
+                            {salon.name}
 
                         </Link>
                     </li>

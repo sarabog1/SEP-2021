@@ -9,7 +9,7 @@ export default function TopMenu(){
             <Link className="nav-link" to="/">Home</Link>
         </Nav.Item>
         <Nav.Item>
-            <Link className="nav-link" to="/salons">Salons</Link>
+            <Link className="nav-link" to="/salon">Salons</Link>
         </Nav.Item>
         <Nav.Item>
             <Link className="nav-link" to="/contact">Contact Us</Link>
