@@ -7,43 +7,44 @@ import HomePage from '../HomePage/HomePage';
 import SalonPage from '../SalonPage/SalonPage';
 import ContactPage from '../ContactPage/ContactPage';
 
-function Application() {
+export default function Application(props: any) {
   return (
     <BrowserRouter>
-      <Container className="Application" fluid>
-
+      <Container className="Application">
         <div className="Application-header">
-        Front-end aplikacije
+          Front-end aplikacije
         </div>
 
+        <TopMenu />
 
-        <TopMenu /> 
-
-
-        <div className="application-body">
-        
+        <div className="Application-body">
           <Switch>
             <Route exact path="/" component={ HomePage } />
-              
-            <Route path="/salons" component={ SalonPage } />
-              
-            <Route exact path="/contact">
-              <ContactPage title="Our location in Belgrade" address="Danijelova 32"
-              phone="+381112345673" />
+
+            <Route path="/salons/:cid?"
+                   render={
+                     (props: any) => {
+                       return ( <SalonPage {...props} /> );
+                     }
+                   } />
+
+            <Route path="/contact">
+              <ContactPage
+                title="Our location in Belgrade"
+                address="Danijelova 32, 11010 Beograd, Srbija"
+                phone="+381 11 30 94 094" />
+            </Route>
+
+            <Route path="/profile">
+              My profile
             </Route>
           </Switch>
-
         </div>
+
         <div>
-        &copy; 2021...
+            &copy; 2021...
         </div>
-
-
-
       </Container>
     </BrowserRouter>
-    
   );
 }
-
-export default Application;

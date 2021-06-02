@@ -1,3 +1,3 @@
 # Model baze podataka
 
-![Relacije izmedju enttiteta](../02-resorces/model.png)
+-[Model baze podataka i veze izmedju entiteta](../02-resorces/model.png)
