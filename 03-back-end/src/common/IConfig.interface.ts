@@ -3,7 +3,7 @@ import {Algorithm } from "jsonwebtoken";
 
 interface TokenKeyOptions {
     private: string;
-    public: string;
+    public: string; 
     duration: number;
 }
 interface TokenOptions{
@@ -45,6 +45,7 @@ export default interface IConfig{
         debug: boolean;
     },
     auth: {
-        admin:TokenOptions;
+        admin:TokenOptions,
+        allowRequestsEvenWithoutValidTokens: boolean,
     }
 };

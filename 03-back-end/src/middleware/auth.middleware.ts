@@ -6,7 +6,10 @@ import ITokenData from '../components/auth/dto/ITokenData.interface';
 type AdminRole = "admin";
 export default class AuthMiddleware {
     public static verifyAuthToken(req:Request, res:Response, next:NextFunction ){
-    
+        if(Config.auth.allowRequestsEvenWithoutValidTokens){
+            return next();
+        }
+
         if(typeof req.headers.authorization !== "string"){
             return res.status(401).send("No auth token specified.");
         }

@@ -19,7 +19,7 @@ const Config: IConfig = {
             maxAge: 3600000
 
         },
-    },
+    }, 
     database: {
         host: "localhost",
         port: 3306,
@@ -52,7 +52,8 @@ const Config: IConfig = {
                 public:readFileSync("keystore/admin-refresh.public", "utf-8"),
                 private:readFileSync("keystore/admin-refresh.private", "utf-8"),
             }
-        }
+        },
+        allowRequestsEvenWithoutValidTokens: true,
     }
 };
 
