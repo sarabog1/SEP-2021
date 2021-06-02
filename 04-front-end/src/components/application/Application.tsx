@@ -1,10 +1,11 @@
 import React from 'react';
 import './Application.sass';
-import { Container, Button } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import TopMenu from '../TopMenu/TopMenu';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import HomePage from '../HomePage/HomePage';
 import SalonPage from '../SalonPage/SalonPage';
+import ContactPage from '../ContactPage/ContactPage';
 
 function Application() {
   return (
@@ -27,7 +28,8 @@ function Application() {
             <Route path="/salons" component={ SalonPage } />
               
             <Route exact path="/contact">
-              Contact Us
+              <ContactPage title="Our location in Belgrade" address="Danijelova 32"
+              phone="+381112345673" />
             </Route>
           </Switch>
 
