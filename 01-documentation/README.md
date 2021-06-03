@@ -1,4 +1,4 @@
-# Veb aplikacija za aukcijsku prodaju
+# Veb aplikacija za rezervaciju termina u frizerskom salonu
 
 ## Projektni zahtev
 
