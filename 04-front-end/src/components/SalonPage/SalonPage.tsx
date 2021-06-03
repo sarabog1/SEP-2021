@@ -1,7 +1,8 @@
-import axios from 'axios';
+
 import BasePage, { BasePageProperties } from '../BasePage/BasePage';
 import { Link } from "react-router-dom";
 import SalonModel from '../../../../03-back-end/src/components/salon/model';
+import SalonService from '../../services/SalonService';
 
 class SalonPageProperties extends BasePageProperties{
     match?: {
@@ -14,6 +15,7 @@ class SalonPageProperties extends BasePageProperties{
 class SalonPageState{
     title: string="";
     salons: SalonModel[]=[];
+    showBackButton: boolean = false;
 }
 
 export default class SalonPage extends BasePage<SalonPageProperties> {
@@ -25,6 +27,7 @@ export default class SalonPage extends BasePage<SalonPageProperties> {
         this.state = {
             title: "",
             salons: [],
+            showBackButton: false,
         };
     } 
 
@@ -46,43 +49,39 @@ export default class SalonPage extends BasePage<SalonPageProperties> {
     }
 
     private apigetAllSalons(){
-        axios({
-            method: "GET",
-            baseURL: "http://localhost/40080",
-            url:"/salon",
-            timeout: 10000,
-            headers: {
-                Authorization: "Bearer FAKE_TOKEN"
-            },
-            //withCredentials: true,
-            maxRedirects: 0,
-        })
-        .then(res =>{
-            if(!Array.isArray(res.data)){
-                throw new Error("Invalid data recived");
-            }
-
-
-        }) 
-        .catch(err =>{
-            const error = "" + err;
-            if(error.includes("404")){
-                this.setState({
-                    title:"No caracters found",
+        SalonService.getAllSalons()
+        .then(salons =>{
+            if (salons.length === 0){
+                return this.setState({
+                    title: "No salons found",
                     salons: [],
-                   
-                })
-            } else {
-                this.setState({
-                    title:"Unable to find",
-                    salons: [],
-                    
-                })
+                    showBackButton: true,
+                });
             }
+            this.setState({
+                title:"All Salons",
+                salons: salons,
+                showBackButton: false,
+            })
         })
     }
     private apiGetSalon(cId: number){
+        SalonService.getSalonById(cId)
+        .then(result =>{
+            if(result === null){
+                this.setState({
+                    title:"Salon not found",
+                    salons: [],
+                    showBackButton: true,
+                })
 
+            }
+            this.setState({
+                title: result?.name,
+                salons: result?.salonId,
+                showBackButton: false,
+            })
+        })
     }
 
     componentDidMount(){
@@ -99,8 +98,42 @@ export default class SalonPage extends BasePage<SalonPageProperties> {
         
         return(
             <>
-            <h1>{ this.state.title } </h1>
+            <h1>{ this.state.showBackButton }
+            ? (
+                <>
+                <Link to={"/salon/" + (this.state.salons ?? '')}>
+                    &lt; Back
+                </Link>
+                    |
+                </>
+            )
+            { this.state.title }
             
+             </h1>
+            {
+                this.state.salons.length > 0
+                ? (
+                    <>
+                    <p>Saloni:</p>
+                    <ul>
+                        {
+                            this.state.salons.map(
+                                salon => (
+                                    <li key={ "salon-link-" + salon.salonId }>
+                                        <Link to={"/salon/" + salon.salonId}>
+                                            {salon.name}
+                                        </Link>
+                                    </li>
+                                )
+                            )
+                        }
+                    </ul>
+                    
+                    </>
+                )
+                :""
+                
+            }
             <ul>
             {
                 this.state.salons.map(salon => (
