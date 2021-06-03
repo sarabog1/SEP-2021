@@ -19,3 +19,8 @@ Aplikacija treba da omogući korisnicima da onlajn rezervišu termin u željenom
 - [Model podataka](./Database-Model.md)
 - [Skica aktivnosti](./skica.txt)
 - [sql dump](../resources/salon_app.sql)
+- [Postman kolekcija](../Testiranje_back-end_dela(API).postman_collection.json)
+- [Detalji baze podataka](./databaseTables)
+- [Use case dijagram](../resources/usecase.png)
+- [Dijagram sekvenci login](../resources/login.png)
+- [Dijagram sekvenci zakazivanje](../resources/zakazivanje.png)

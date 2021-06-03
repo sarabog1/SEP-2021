@@ -1,0 +1,5657 @@
+{
+	"info": {
+		"_postman_id": "5ff41ff2-cab6-4dbf-bc4e-1cedaa8081dc",
+		"name": "Testiranje back-end dela (API)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "salon",
+			"item": [
+				{
+					"name": "HairStyllist",
+					"item": [
+						{
+							"name": "GET by id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/styllist/13",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"styllist",
+										"13"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET existing styllist",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/styllist/2",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"styllist",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "136"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"88-dcqo4NanjRcjC2P7lN6MSVQT7Zo\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 20 May 2021 13:07:50 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"hairStyllistId\": 2,\n    \"name\": \"Marija\",\n    \"surname\": \"Glisic\",\n    \"salonId\": 3,\n    \"salon\": {\n        \"salonId\": 3,\n        \"name\": \"Dunavska\",\n        \"locationId\": 2,\n        \"serviceId\": 3\n    }\n}"
+								},
+								{
+									"name": "GET null ID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/styllist/10",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"styllist",
+												"10"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "9"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 20 May 2021 13:08:12 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "Not Found"
+								}
+							]
+						},
+						{
+							"name": "GET all styllists of a salon",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/salon/9/styllist",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"salon",
+										"9",
+										"styllist"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET all styllists of a salon -VALID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/salon/9/styllist",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"salon",
+												"9",
+												"styllist"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "70"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"46-wdH7Ok6Zj7Iy9S6Q5LftwRzhmM4\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 25 May 2021 13:09:36 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"hairStyllistId\": 17,\n        \"name\": \"Mara\",\n        \"surname\": \"NikMaric\",\n        \"salonId\": 9\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "POST a new styllist",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Marija\",\r\n    \"surname\": \"Markic\",\r\n    \"salonId\": 10   \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/styllist",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"styllist"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST a new styllist - valid info",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\":\"Sarah\",\r\n    \"surname\":\"Sharic\",\r\n    \"salonId\": 2\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/styllist",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"styllist"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "136"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"88-JijbMJnKch01OLn8Gc0Y8jbdcXs\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 21 May 2021 11:04:36 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"hairStyllistId\": 10,\n    \"name\": \"Sarah\",\n    \"surname\": \"Sharic\",\n    \"salonId\": 2,\n    \"salon\": {\n        \"salonId\": 2,\n        \"name\": \"Centar22\",\n        \"locationId\": 2,\n        \"serviceId\": 3\n    }\n}"
+								},
+								{
+									"name": "POST a new styllist - invalid info",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\":\"Sarah\",\r\n    \"surname\":\"Sharic\",\r\n    \"salonId\": 10\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/styllist",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"styllist"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "259"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"103-TMv21FnYigo2AYRzvUmgPykUNgQ\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 21 May 2021 11:05:01 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"errorCode\": 1452,\n    \"errorMessage\": \"Cannot add or update a child row: a foreign key constraint fails (`salon_app`.`hair_styllist`, CONSTRAINT `fk_hair_styllist_salon_hair_styllist_id` FOREIGN KEY (`salon_id`) REFERENCES `salon` (`salon_id`) ON UPDATE CASCADE)\"\n}"
+								}
+							]
+						},
+						{
+							"name": "PUT a new styllist",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Marija\",\r\n    \"surname\": \"Markicevic\"\r\n      \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/styllist/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"styllist",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "PUT a new styllist - VALID",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Marija\",\r\n    \"surname\": \"Markicevic\"\r\n      \r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/styllist/13",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"styllist",
+												"13"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "72"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"48-U5c0zPYvYwZ/ngWb9NIaO2MhqPw\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 03 Jun 2021 10:11:05 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"hairStyllistId\": 13,\n    \"name\": \"Marija\",\n    \"surname\": \"Markicevic\",\n    \"salonId\": 8\n}"
+								},
+								{
+									"name": "PUT a new styllist - INVALID",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Marija\",\r\n    \"surname\": \"Markicevic\"\r\n      \r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/styllist/2",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"styllist",
+												"2"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "9"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 03 Jun 2021 10:11:26 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "Not Found"
+								}
+							]
+						},
+						{
+							"name": "DELETE a styllist",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/styllist/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"styllist",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "DELETE a non existing styllist",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/styllist/12",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"styllist",
+												"12"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "68"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"44-7g6Jt1XXn5ZIAI/Sedbvv4x+sOA\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 21 May 2021 11:51:47 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"errorCode\": -1,\n    \"errorMessage\": \"This styllist could not be deleted\"\n}"
+								},
+								{
+									"name": "DELETE an existing styllist",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/styllist/6",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"styllist",
+												"6"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "47"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2f-p0IWcFbTUcb+dTYThuDZc68xZQk\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 21 May 2021 11:52:20 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"Record deleted\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Location",
+					"item": [
+						{
+							"name": "GET all locations",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/location",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"location"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET all",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/location",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"location"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "160"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"a0-/wbfPLYy1m2hokW+1zygsi29Lzc\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 21 May 2021 12:31:09 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"locationId\": 1,\n        \"street\": \"Ladne vode\",\n        \"number\": 122\n    },\n    {\n        \"locationId\": 2,\n        \"street\": \"Zorza Klemensoa\",\n        \"number\": 34\n    },\n    {\n        \"locationId\": 3,\n        \"street\": \"Cvijiceva\",\n        \"number\": 134\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "GET location by id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/location/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"location",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET valid id",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/location/1",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"location",
+												"1"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"33-rx6nUxOcmVIRwpBF97VCqBHmwns\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 21 May 2021 12:31:42 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"locationId\": 1,\n    \"street\": \"Ladne vode\",\n    \"number\": 122\n}"
+								},
+								{
+									"name": "GET invalid ID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/location/5",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"location",
+												"5"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "9"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 21 May 2021 12:32:06 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "Not Found"
+								}
+							]
+						},
+						{
+							"name": "POST a location",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"street\":\"testToken\",\r\n    \"number\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/location",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"location"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST a location-VALID",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"street\":\"Dabovicka\",\r\n    \"number\": 33\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/location",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"location"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "49"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"31-86QvuZysEXw4z8PzEnexrAnla1g\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 25 May 2021 08:10:23 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"locationId\": 4,\n    \"street\": \"Dabovicka\",\n    \"number\": 33\n}"
+								},
+								{
+									"name": "POST a location - INVALID",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"street\":\"Dabovicka\",\r\n    \"number\": 0\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/location",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"location"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "155"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"9b-duMOqe9eor1t7H4MSiPGP0IcxPc\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 25 May 2021 08:14:53 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"instancePath\": \"/number\",\n        \"schemaPath\": \"#/properties/number/minimum\",\n        \"keyword\": \"minimum\",\n        \"params\": {\n            \"comparison\": \">=\",\n            \"limit\": 1\n        },\n        \"message\": \"must be >= 1\"\n    }\n]"
+								},
+								{
+									"name": "POST a location - WITH TOKEN",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"street\":\"testToken\",\r\n    \"number\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/location",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"location"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "48"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"30-MQG6ekHnTiXrDTczz2JbfmTCIEs\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 03 Jun 2021 12:08:52 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"locationId\": 7,\n    \"street\": \"testToken\",\n    \"number\": 1\n}"
+								},
+								{
+									"name": "POST a location - WITHOUT TOKEN",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"street\":\"testToken\",\r\n    \"number\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/location",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"location"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "html",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/html; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "24"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"18-qZi/oGrFTQ4B2t0nzhq3c0hh1j4\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 03 Jun 2021 12:09:06 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "No auth token specified."
+								}
+							]
+						},
+						{
+							"name": "PUT a location",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n    \"street\": \"Malina\",\r\n    \"number\": 223\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/location/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"location",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "PUT a location - VALID",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"street\": \"Marsala Tita\",\r\n    \"number\": 223\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/location/2",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"location",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "53"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"35-F0fTB9/6rLDeoWm5GQzrNpkPa2I\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 25 May 2021 08:16:04 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"locationId\": 2,\n    \"street\": \"Marsala Tita\",\n    \"number\": 223\n}"
+								},
+								{
+									"name": "PUT a location - INVALID",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"street\": \"M\",\r\n    \"number\": 223\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/location/2",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"location",
+												"2"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "166"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"a6-uBnVnIh4Mp+2ZSgBBKqeh9qTaRY\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 25 May 2021 08:16:46 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"instancePath\": \"/street\",\n        \"schemaPath\": \"#/properties/street/minLength\",\n        \"keyword\": \"minLength\",\n        \"params\": {\n            \"limit\": 2\n        },\n        \"message\": \"must NOT have fewer than 2 characters\"\n    }\n]"
+								},
+								{
+									"name": "PUT a location WITH TOKEN",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \r\n    \"street\": \"Malina\",\r\n    \"number\": 223\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/location/2",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"location",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "47"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2f-C6OZaqMBQbOqux543wB2JFXfXps\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 03 Jun 2021 12:08:07 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"locationId\": 2,\n    \"street\": \"Malina\",\n    \"number\": 223\n}"
+								},
+								{
+									"name": "PUT a location - WITHOUT TOKEN",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \r\n    \"street\": \"Malina\",\r\n    \"number\": 223\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/location/2",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"location",
+												"2"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "html",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/html; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "24"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"18-qZi/oGrFTQ4B2t0nzhq3c0hh1j4\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 03 Jun 2021 12:08:23 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "No auth token specified."
+								}
+							]
+						},
+						{
+							"name": "DELETE a location",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/location/5",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"location",
+										"5"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "DELETE a location-VALID",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/location/5",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"location",
+												"5"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "47"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2f-p0IWcFbTUcb+dTYThuDZc68xZQk\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 25 May 2021 08:22:57 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"Record deleted\"\n}"
+								},
+								{
+									"name": "DELETE a location - INVALID",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/location/10",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"location",
+												"10"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "68"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"44-C0vmwnOF3/Lo3DI3i8bIQ3zU/sY\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 25 May 2021 08:24:41 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"errorCode\": -1,\n    \"errorMessage\": \"This location could not be deleted\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "salon",
+					"item": [
+						{
+							"name": "GET all salons",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/salon",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"salon"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET all salons",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/salon",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"salon"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "100"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"64-NeTzvhGlWwUN3sD7atMxkxv1CQ4\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 13 May 2021 12:18:41 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"salonId\": 1,\n        \"name\": \"Ime salona\",\n        \"locationId\": 1\n    },\n    {\n        \"salonId\": 2,\n        \"name\": \"Ime salona2\",\n        \"locationId\": 2\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "GET a single",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/salon/8",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"salon",
+										"8"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET a single- good id",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/salon/1",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"salon",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "48"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"30-J1vgZEM1IGJ7X6AD3Tou1CvkwUQ\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 13 May 2021 12:41:23 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"salonId\": 1,\n    \"name\": \"Ime salona\",\n    \"locationId\": 1\n}"
+								},
+								{
+									"name": "GET a single-invalid id",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/salon/-4",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"salon",
+												"-4"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "11"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"b-EFiDB1U+dmqzx9Mo2UjcZ1SJPO8\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 13 May 2021 12:41:55 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "Bad Request"
+								}
+							]
+						},
+						{
+							"name": "Post a new salon",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"test\",\r\n    \"locationId\": 6,\r\n    \"serviceId\": 4\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/salon",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"salon"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Post a new salon- with a valid input",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Centar4\",\r\n    \"locationId\": 3,\r\n    \"serviceId\": 1\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/salon",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"salon"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "59"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3b-MsaehcOjbffz5qG8AWJizbcBP7s\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 17 May 2021 12:11:32 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"salonId\": 5,\n    \"name\": \"Centar4\",\n    \"locationId\": 3,\n    \"serviceId\": 1\n}"
+								},
+								{
+									"name": "Post a new salon- with invalid input",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"1\",\r\n    \"locationId\": 3,\r\n    \"serviceId\": 1\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/salon",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"salon"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "162"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"a2-mIVpkZDd+Z4K98rkdaZ2WcDVoQ0\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 17 May 2021 12:11:58 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"instancePath\": \"/name\",\n        \"schemaPath\": \"#/properties/name/minLength\",\n        \"keyword\": \"minLength\",\n        \"params\": {\n            \"limit\": 2\n        },\n        \"message\": \"must NOT have fewer than 2 characters\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "PUT to edit an existing salon",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Niki\",\r\n    \"locationId\": 4,\r\n    \"serviceId\": 4\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/salon/8",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"salon",
+										"8"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "PUT to edit an existing salon - INVALID",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Niki\",\r\n    \"locationId\": 5,\r\n    \"serviceId\": 4\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/salon/8",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"salon",
+												"8"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "241"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"f1-W/A1hOma9QeNaAYU8MEYsv/odyg\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 03 Jun 2021 10:13:37 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"errorCode\": 1452,\n    \"errorMessage\": \"Cannot add or update a child row: a foreign key constraint fails (`salon_app`.`salon`, CONSTRAINT `fk_location_salon_id` FOREIGN KEY (`location_id`) REFERENCES `location` (`location_id`) ON UPDATE CASCADE)\"\n}"
+								},
+								{
+									"name": "PUT to edit an existing salon - VALID",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Niki\",\r\n    \"locationId\": 4,\r\n    \"serviceId\": 4\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/salon/8",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"salon",
+												"8"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "56"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"38-f/qQU9lNaZ3wMcqzis3j1Qjgz3s\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 03 Jun 2021 10:14:02 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"salonId\": 8,\n    \"name\": \"Niki\",\n    \"locationId\": 4,\n    \"serviceId\": 4\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete a salon",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"salon_id\": 6\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/salon/6",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"salon",
+										"6"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Delete a salon - does not exist",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/salon/5",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"salon",
+												"5"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "65"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"41-KPdn8AEeuQp2QYyH5Xl/H19RO4M\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 20 May 2021 09:25:30 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"errorCode\": -1,\n    \"errorMessage\": \"This salon could not be deleted\"\n}"
+								},
+								{
+									"name": "Delete a salon - exiting salon",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/salon/7",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"salon",
+												"7"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "47"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2f-p0IWcFbTUcb+dTYThuDZc68xZQk\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 20 May 2021 09:57:06 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"Record deleted\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "service",
+					"item": [
+						{
+							"name": "POST a new service",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/service",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"service"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST a new service - VALID",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"type\": \"Farbing\",\r\n    \"price\": 1500\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/service",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"service"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "45"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2d-NYpl7nsrno2FHPkd5d9uAUkUZgc\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 25 May 2021 09:12:48 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"serviceId\": 5,\n    \"type\": \"Farbing\",\n    \"price\": 1500\n}"
+								},
+								{
+									"name": "POST a new service - INVALID",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"type\": \"F\",\r\n    \"price\": 0\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/service",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"service"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "162"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"a2-GQ37RP2IkEn/3UKoV3y3Ea4UdZA\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 25 May 2021 09:13:16 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"instancePath\": \"/type\",\n        \"schemaPath\": \"#/properties/type/minLength\",\n        \"keyword\": \"minLength\",\n        \"params\": {\n            \"limit\": 2\n        },\n        \"message\": \"must NOT have fewer than 2 characters\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "GET all services",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/service",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"service"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET all services - VALID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/service",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"service"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "135"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"87-wiEIUg9gve45t/sbhLZbzGqIu0I\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 25 May 2021 09:13:43 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"serviceId\": 4,\n        \"type\": \"Haircut\",\n        \"price\": 250\n    },\n    {\n        \"serviceId\": 5,\n        \"type\": \"Farbing\",\n        \"price\": 1500\n    },\n    {\n        \"serviceId\": 6,\n        \"type\": \"Farbing\",\n        \"price\": 1\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "GET service by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/service",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"service"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET service by ID - VALID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/service/5",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"service",
+												"5"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "45"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2d-NYpl7nsrno2FHPkd5d9uAUkUZgc\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 25 May 2021 09:14:32 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"serviceId\": 5,\n    \"type\": \"Farbing\",\n    \"price\": 1500\n}"
+								},
+								{
+									"name": "GET service by ID - INAVLID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/service/1",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"service",
+												"1"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "9"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 25 May 2021 09:14:43 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "Not Found"
+								}
+							]
+						},
+						{
+							"name": "PUT a service",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"Haistyle\",\r\n    \"price\" : 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/service/5",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"service",
+										"5"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "PUT a service- VALID",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"type\": \"Haistyle\",\r\n    \"price\" : 800\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/service/5",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"service",
+												"5"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "45"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2d-aaowyTQPBylCpqnEh34OKLgXJ9U\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 25 May 2021 09:15:45 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"serviceId\": 5,\n    \"type\": \"Haistyle\",\n    \"price\": 800\n}"
+								},
+								{
+									"name": "PUT a service- INVALID",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"type\": \"Haistyle\",\r\n    \"price\" : 0\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/service/5",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"service",
+												"5"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "153"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"99-tFCGH2eqO3XonSMgpW+REPMMnxk\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 25 May 2021 09:16:19 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"instancePath\": \"/price\",\n        \"schemaPath\": \"#/properties/price/minimum\",\n        \"keyword\": \"minimum\",\n        \"params\": {\n            \"comparison\": \">=\",\n            \"limit\": 1\n        },\n        \"message\": \"must be >= 1\"\n    }\n]"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Customer",
+					"item": [
+						{
+							"name": "GET all customers",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Sara\",\r\n    \"surname\":\"Bogunovic\",\r\n    \"phone\": \"0693452320\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/customer",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"customer"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET all customers - VALID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\":\"Sara\",\r\n    \"surname\":\"Bogunovic\",\r\n    \"phone\": \"0693452320\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/customer",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"customer"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "132"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"84-EqRQ7avQX3ociBTZ2SkfKC8M7FU\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 25 May 2021 15:16:00 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"customerId\": 1,\n        \"name\": \"Milena\",\n        \"surname\": \"Ilic\",\n        \"phone\": 6555623\n    },\n    {\n        \"customerId\": 2,\n        \"name\": \"test\",\n        \"surname\": \"test\",\n        \"phone\": 65556235\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "GET a customer by ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/customer/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"customer",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET a customer by id - VALID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/customer/1",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"customer",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "65"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"41-xTJeJadCJoek9+n6RKBrg7y+OgE\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 25 May 2021 15:16:23 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"customerId\": 1,\n    \"name\": \"Milena\",\n    \"surname\": \"Ilic\",\n    \"phone\": 6555623\n}"
+								}
+							]
+						},
+						{
+							"name": "POST a customer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Sara\",\r\n    \"surname\": \"Bogi\",\r\n    \"phone\": \"0694563432\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/customer",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"customer"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST a customer - VALID",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\":\"Sara\",\r\n    \"surname\": \"Bogi\",\r\n    \"phone\": \"0694563432\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/customer",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"customer"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "65"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"41-QY2xW7VxQPQvrG/Giij/wKNqCFM\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 25 May 2021 15:19:43 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"customerId\": 3,\n    \"name\": \"Sara\",\n    \"surname\": \"Bogi\",\n    \"phone\": 694563432\n}"
+								}
+							]
+						},
+						{
+							"name": "DELETE a customer",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/customer/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"customer",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "DELETE a customer - VALID",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/customer/2",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"customer",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "47"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2f-p0IWcFbTUcb+dTYThuDZc68xZQk\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 10:48:58 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"Record deleted\"\n}"
+								},
+								{
+									"name": "DELETE a customer - INVALID",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/customer/2",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"customer",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "68"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"44-7g6Jt1XXn5ZIAI/Sedbvv4x+sOA\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 10:49:07 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"errorCode\": -1,\n    \"errorMessage\": \"This styllist could not be deleted\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Available Appointment",
+					"item": [
+						{
+							"name": "GET all available appointments",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/available",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"available"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET all available appointments -- VALID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/available",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"available"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "385"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"181-Aano1LNoeVxQG+AotTbQgKLzUN4\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 09:58:49 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"availableId\": 1,\n        \"startsAt\": \"2021-06-26T10:00:00.000Z\",\n        \"endsAt\": \"2021-06-06T10:30:00.000Z\",\n        \"isAvailable\": 1,\n        \"hairStyllistId\": 19\n    },\n    {\n        \"availableId\": 2,\n        \"startsAt\": \"2021-05-28T09:56:16.000Z\",\n        \"endsAt\": \"2021-05-28T10:30:00.000Z\",\n        \"isAvailable\": 1,\n        \"hairStyllistId\": 17\n    },\n    {\n        \"availableId\": 3,\n        \"startsAt\": \"2021-05-26T09:56:55.000Z\",\n        \"endsAt\": \"2021-05-26T10:30:00.000Z\",\n        \"isAvailable\": 0,\n        \"hairStyllistId\": 13\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "GET by Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/available/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"available",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET by Id - VALID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/available/1",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"available",
+												"1"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "127"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"7f-Zdooo8EBDgLfoLOeb/FLFKSnCmo\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 09:59:21 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"availableId\": 1,\n    \"startsAt\": \"2021-06-26T10:00:00.000Z\",\n    \"endsAt\": \"2021-06-06T10:30:00.000Z\",\n    \"isAvailable\": 1,\n    \"hairStyllistId\": 19\n}"
+								},
+								{
+									"name": "GET by Id - INVALID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/available/10",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"available",
+												"10"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "9"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 09:59:39 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "Not Found"
+								}
+							]
+						},
+						{
+							"name": "GET by hair styllist id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/styllist/17/available",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"styllist",
+										"17",
+										"available"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET by hair styllist id - VALID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/styllist/13/available",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"styllist",
+												"13",
+												"available"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "129"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"81-/XMJmzlQR7fUuUc1mZs4PNH9bDc\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 10:00:36 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"availableId\": 3,\n        \"startsAt\": \"2021-05-26T09:56:55.000Z\",\n        \"endsAt\": \"2021-05-26T10:30:00.000Z\",\n        \"isAvailable\": 0,\n        \"hairStyllistId\": 13\n    }\n]"
+								},
+								{
+									"name": "GET by hair styllist id - NULL",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/styllist/1/available",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"styllist",
+												"1",
+												"available"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "2"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 10:01:24 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[]"
+								}
+							]
+						},
+						{
+							"name": "PUT available appointment",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"isAvailable\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/available/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"available",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "PUT available appointment - VALID",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \r\n    \"isAvailable\": true\r\n    \r\n\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/available/1",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"available",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "126"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"7e-BJ5iFFoT5nekQlXwwYfI+a6k2pw\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 10:05:50 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"availableId\": 1,\n    \"startsAt\": \"2021-06-26T10:00:00.000Z\",\n    \"endAt\": \"2021-06-06T10:30:00.000Z\",\n    \"isAvailable\": 1,\n    \"hairStyllistId\": 19\n}"
+								},
+								{
+									"name": "POST available appointment - INVALID",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \r\n    \"isAvailable\": 1\r\n    \r\n\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/available/1",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"available",
+												"1"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "151"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"97-rgucO35g06bxieNtEy5EWkHgJl0\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 10:06:19 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"instancePath\": \"/isAvailable\",\n        \"schemaPath\": \"#/properties/isAvailable/type\",\n        \"keyword\": \"type\",\n        \"params\": {\n            \"type\": \"boolean\"\n        },\n        \"message\": \"must be boolean\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "DELTE an appointment",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/available/3",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"available",
+										"3"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "DELTE an appointment - VALID",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/available/3",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"available",
+												"3"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "47"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2f-p0IWcFbTUcb+dTYThuDZc68xZQk\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 10:07:17 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"Record deleted\"\n}"
+								},
+								{
+									"name": "DELTE an appointment - INAVLID",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/available/3",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"available",
+												"3"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "68"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"44-C0vmwnOF3/Lo3DI3i8bIQ3zU/sY\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 10:07:32 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"errorCode\": -1,\n    \"errorMessage\": \"This location could not be deleted\"\n}"
+								}
+							]
+						},
+						{
+							"name": "POST a new available appointment",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..C8tpnA0z2Qk2Jm9cQ12cVGqB2wxU4lfyIuPABBguB_S2-ix9ElTcbbiAdGPVwOy9jn25jRb8KU7eX2MC2cjkaFXVzJZ9EkUHmq7LVYHDXFoeFOjq3d3Y-BzMzqHj1b2Z33bM_KaFR4dzq383dWw7v7JuU5hdNJuv2tmQGJfl2mS7Zq0TjvvWz9O3c6luKy7_5XEMkVsKh9xpoU_cYFI7bdzxRWOxZWyCpLQfZ9AinIjWAN1wj-qG7uSPPN9rpHkfmog5ZueEbOvStopVtjH8T86fqCc74ngIDyedzv5lOVpQlu-qmxcgrOmMS7IQka60r7j8i4dkn-Un76SCi-N9hA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"startsAt\": \"2021-07-28 11:56:16\",\r\n    \"endAt\": \"2021-07-28 12:56:16\",\r\n    \"isAvailable\": true,\r\n    \"hairStyllistId\": 13\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/available",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"available"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST a new available appointment - VALID",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"startsAt\": \"2021-07-28 10:56:16\",\r\n    \"endAt\": \"2021-07-28 11:56:16\",\r\n    \"isAvailable\": true,\r\n    \"hairStyllistId\": 13\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/available",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"available"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "126"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"7e-9j6+iv4uPH96FZqiDTUYzn4fo54\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 10:21:47 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"availableId\": 4,\n    \"startsAt\": \"2021-07-28T09:56:16.000Z\",\n    \"endAt\": \"2021-07-28T10:56:16.000Z\",\n    \"isAvailable\": 1,\n    \"hairStyllistId\": 13\n}"
+								},
+								{
+									"name": "POST a new available appointment - INVALID - duplicate date",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"startsAt\": \"2021-07-28 10:56:16\",\r\n    \"endAt\": \"2021-07-28 11:56:16\",\r\n    \"isAvailable\": true,\r\n    \"hairStyllistId\": 13\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/available",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"available"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "145"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"91-elXynvPfS++nwvS/tqkmSi0Q3RA\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 10:23:51 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"errorCode\": 1062,\n    \"errorMessage\": \"Duplicate entry '2021-07-28 10:56:16-2021-07-28 11:56:16' for key 'uq_available_appointment_starts_at_end_at'\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Appointment",
+					"item": [
+						{
+							"name": "GET all appointments",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/appointment",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"appointment"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET all customers - VALID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/appointment",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"appointment"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "187"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"bb-7khPU/jfbu6M0P8nDPG7exgd+9Q\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 11:40:38 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"appointmentId\": 1,\n        \"availableAppointmentId\": 4,\n        \"customerId\": 1\n    },\n    {\n        \"appointmentId\": 2,\n        \"availableAppointmentId\": 7,\n        \"customerId\": 1\n    },\n    {\n        \"appointmentId\": 4,\n        \"availableAppointmentId\": 2,\n        \"customerId\": 3\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "POST a new appointment",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"availableAppointmentId\": 2,\r\n    \"customerId\": 3,\r\n    \"email\": \"sarabog@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/appointment",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"appointment"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST a new customer - VALID",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"availableAppointmentId\": 2,\r\n    \"customerId\": 3\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/appointment",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"appointment"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "61"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3d-n55NxMZQ5SCT74qGcs84lWvvqCk\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 11:39:55 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"appointmentId\": 4,\n    \"availableAppointmentId\": 2,\n    \"customerId\": 3\n}"
+								},
+								{
+									"name": "POST a new customer - INVALID",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"availableAppointmentId\": 2,\r\n    \"customerId\": 10\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/appointment",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"appointment"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "265"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"109-4+QGyTQek6URS8fyF27uJhlck+0\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 11:40:27 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"errorCode\": 1452,\n    \"errorMessage\": \"Cannot add or update a child row: a foreign key constraint fails (`salon_app`.`appointment`, CONSTRAINT `fk_appointment_customer_appointment_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON UPDATE CASCADE)\"\n}"
+								},
+								{
+									"name": "POST a new customer - Duplicate email - Valid",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"availableAppointmentId\": 2,\r\n    \"customerId\": 3,\r\n    \"email\": \"sarabog@gmail.com\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/appointment",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"appointment"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "102"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"66-KkrNtiD1SsLX+XQE8QnQ1qUp9m4\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 27 May 2021 13:45:27 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"errorCode\": 1062,\n    \"errorMessage\": \"Duplicate entry 'sarabog@gmail.com' for key 'uq_appointment_email'\"\n}"
+								}
+							]
+						},
+						{
+							"name": "POST book appointment",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"availableAppointmentId\": 2,\r\n    \"customerId\": 3,\r\n    \"email\": \"sarabog123@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/appointment/book",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"appointment",
+										"book"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST book appointment - INVALID",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"availableAppointmentId\": 2,\r\n    \"customerId\": 3,\r\n    \"email\": \"sarabog123@gmail.com\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/appointment/book",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"appointment",
+												"book"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "105"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"69-TZJecqMcGDjK/7yIpepzXNxdSmU\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 03 Jun 2021 10:15:18 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"errorCode\": 1062,\n    \"errorMessage\": \"Duplicate entry 'sarabog123@gmail.com' for key 'uq_appointment_email'\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "GET all admins",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/admin",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET all admins - VALID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/admin",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"admin"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "131"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"83-2AN7wmVNTtvc0HvSYfsqvYMefTQ\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 16:33:13 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"adminId\": 3,\n        \"username\": \"sarabogi\",\n        \"passwordHash\": \"$2b$11$ReClRI43KYkU/nAgUCdtR.UX/VhE5iFqpFI/lo9IM7z1v5BXiIZSq\",\n        \"isActive\": true\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "GET a single",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/admin/3",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"admin",
+										"3"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET a single - VALID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/admin/3",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"admin",
+												"3"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "129"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"81-Zdj9O5QizJgqw+JmTmw1QjElVS4\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 16:33:26 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"adminId\": 3,\n    \"username\": \"sarabogi\",\n    \"passwordHash\": \"$2b$11$ReClRI43KYkU/nAgUCdtR.UX/VhE5iFqpFI/lo9IM7z1v5BXiIZSq\",\n    \"isActive\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "POST a new admin",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"adminadmin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/admin",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST an admin - VALID",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\":\"sarabogi\",\r\n    \"password\":\"Test1234!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/admin",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"admin"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "129"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"81-Zdj9O5QizJgqw+JmTmw1QjElVS4\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 16:30:49 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"adminId\": 3,\n    \"username\": \"sarabogi\",\n    \"passwordHash\": \"$2b$11$ReClRI43KYkU/nAgUCdtR.UX/VhE5iFqpFI/lo9IM7z1v5BXiIZSq\",\n    \"isActive\": true\n}"
+								},
+								{
+									"name": "POST a new admin -- DUPLICATE VALID",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\":\"sarabogi\",\r\n    \"password\":\"Test1234!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/admin",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"admin"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "90"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"5a-hLvIuxoMape00kUPOmeWIMvjsfA\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 16:32:22 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"errorCode\": 1062,\n    \"errorMessage\": \"Duplicate entry 'sarabogi' for key 'uq_admin_username'\"\n}"
+								},
+								{
+									"name": "POST a new admin - INVALID",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\":\"sa\",\r\n    \"password\":\"Test1234!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/admin",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"admin"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "170"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"aa-U2SI1vXX59wPKzoDIaDmKjzlRF0\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 16:32:41 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"instancePath\": \"/username\",\n        \"schemaPath\": \"#/properties/username/minLength\",\n        \"keyword\": \"minLength\",\n        \"params\": {\n            \"limit\": 5\n        },\n        \"message\": \"must NOT have fewer than 5 characters\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "PUT an admin",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": null
+							},
+							"response": [
+								{
+									"name": "PUT an admin - VALID",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"password\":\"testic2\",\r\n    \"isActive\": true\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/admin/3",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"admin",
+												"3"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "129"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"81-MQSzkm3u6dT3G1etb+wjgYOd7yM\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 16:36:06 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"adminId\": 3,\n    \"username\": \"sarabogi\",\n    \"passwordHash\": \"$2b$11$Z5qZ7MUWU/cllWLuPtRzjedOFesRcnzKCfNQni3cFDF8eO.Eyyos2\",\n    \"isActive\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "DELETE an admin",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": null
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "POST login admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"sarabogi1\",\r\n    \"password\":\"Test1234!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/admin/login",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST login admin - When admin doesn't exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"saraboi\",\r\n    \"password\":\"Test1234!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/admin/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"admin",
+										"login"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 May 2021 11:38:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						},
+						{
+							"name": "POST login admin - Inavlid password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"sarabogi1\",\r\n    \"password\":\"Test134!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/admin/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"admin",
+										"login"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "23"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"17-lQGlONCUvFlfaFQYAcFKZ6ASmhs\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 May 2021 11:53:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Invalid admin password."
+						},
+						{
+							"name": "POST login admin - VaLID",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"sarabogi1\",\r\n    \"password\":\"Test1234!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/admin/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"admin",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1056"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"420-JFCq3P6B8L3rI3Pgnj5N2G49na8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 May 2021 07:47:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"authToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g\",\n    \"refreshToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTY1Mzk4MzI0OSwiaXNzIjoibG9jYWxob3N0In0.iZWH7ik5iwpRLCk0r9cYH9h8ulcAXC1PKk4u3Oh8oQ-kuFX3_ef6fYWELBzU9Jy1wtpZNUZE_wnACx-o9kDjzLhk7UVQOYZWJzHyIwFZRjdy7ZdsuPCPIsyd3eR_7OHn4ihvLkqONDNM5kCMscZDma1nhCRrxXlIssRA8MVUm0JUk8LbIp45Y1a1bbO4B6lIQihJrJIb9hcjIaR7knMWoHyJpza7-RTF4iMJLlFbOe8WlZo01zYRdZBj5gy4e-cz3LV_ZfhPQublczPKaPqgB9Wkmhs6zqG4SmCafAUJPGd_mU5ZkXXNlmj-GGOAlR59sjf_veYhONq_HTA5TQ2ddw\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Token methodes validation",
+			"item": [
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/salon/11",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"salon",
+								"11"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE location  INVALID",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/location/5",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"location",
+										"5"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "24"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18-qZi/oGrFTQ4B2t0nzhq3c0hh1j4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Jun 2021 12:10:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "No auth token specified."
+						},
+						{
+							"name": "DELETE a location VALID",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/location/3",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"location",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f-p0IWcFbTUcb+dTYThuDZc68xZQk\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Jun 2021 12:11:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"Record deleted\"\n}"
+						},
+						{
+							"name": "DELETE a service VALID",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/service/6",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"service",
+										"6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f-p0IWcFbTUcb+dTYThuDZc68xZQk\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Jun 2021 12:11:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"Record deleted\"\n}"
+						},
+						{
+							"name": "DELETE a service INVALID",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/service/6",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"service",
+										"6"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "24"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18-qZi/oGrFTQ4B2t0nzhq3c0hh1j4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Jun 2021 12:12:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "No auth token specified."
+						},
+						{
+							"name": "DELETE a salon INVALID",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/salon/11",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"salon",
+										"11"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "24"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18-qZi/oGrFTQ4B2t0nzhq3c0hh1j4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Jun 2021 12:12:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "No auth token specified."
+						},
+						{
+							"name": "DELETE a salon VALID",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/salon/11",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"salon",
+										"11"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f-p0IWcFbTUcb+dTYThuDZc68xZQk\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Jun 2021 12:13:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"Record deleted\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_ADMIN_AUTH_TOKEN",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWRlbnRpdHkiOiJzYXJhYm9naTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MjI0NDcyNDksImV4cCI6MTYyMzA1MjA0OSwiaXNzIjoibG9jYWxob3N0In0.UJuLxEEwoi-CAqNaEs3WZtnVgkGDLASQFE5kThPDTyIbuCbSlqlCDl2D0ZdLuVqhLAh_3A3YmwZsixHLM91TB0PV7llqP7HI12O4ljlf8abGUMxpn5m9Y_HirUuY93Vo8gHxRLtL4YjB4gzw60bJDOl4AcboABHFe0PboWkvZwamcG-iqEXgajBNP53EcZ8IiiXjq0QB0p4Okl4EgGk-fBB78uiCZJS26eYYtRQyK3o64H4ITx82BR49VimjkbKErZHJhQAJrqrW-SOsHZN7fYoWyu4rTAQL7ZDT4k2lh_jeoDtG3CG-5ZP6tyusSXb6UPp3qeQPmRrKvyjX1ZED-g"
+		}
+	]
+}
