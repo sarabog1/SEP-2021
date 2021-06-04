@@ -15,6 +15,7 @@ class SalonPageProperties extends BasePageProperties{
 class SalonPageState{
     title: string="";
     salons: SalonModel[]=[];
+    salonId: number | null = null;
     showBackButton: boolean = false;
 }
 
@@ -27,6 +28,7 @@ export default class SalonPage extends BasePage<SalonPageProperties> {
         this.state = {
             title: "",
             salons: [],
+            salonId: null,
             showBackButton: false,
         };
     } 
@@ -54,6 +56,7 @@ export default class SalonPage extends BasePage<SalonPageProperties> {
             if (salons.length === 0){
                 return this.setState({
                     title: "No salons found",
+                    salonId:null,
                     salons: [],
                     showBackButton: true,
                 });
@@ -61,6 +64,7 @@ export default class SalonPage extends BasePage<SalonPageProperties> {
             this.setState({
                 title:"All Salons",
                 salons: salons,
+                salonId:null,
                 showBackButton: false,
             })
         })
@@ -72,13 +76,14 @@ export default class SalonPage extends BasePage<SalonPageProperties> {
                 this.setState({
                     title:"Salon not found",
                     salons: [],
+                    salonId: null,
                     showBackButton: true,
                 })
 
             }
             this.setState({
                 title: result?.name,
-                salons: result?.salonId,
+                salonId: result?.salonId,
                 showBackButton: false,
             })
         })
@@ -96,58 +101,48 @@ export default class SalonPage extends BasePage<SalonPageProperties> {
     renderMain(): JSX.Element{
 
         
-        return(
+        return (
             <>
-            <h1>{ this.state.showBackButton }
-            ? (
-                <>
-                <Link to={"/salon/" + (this.state.salons ?? '')}>
-                    &lt; Back
-                </Link>
-                    |
-                </>
-            )
-            { this.state.title }
-            
-             </h1>
-            {
-                this.state.salons.length > 0
-                ? (
-                    <>
-                    <p>Saloni:</p>
-                    <ul>
-                        {
-                            this.state.salons.map(
-                                salon => (
-                                    <li key={ "salon-link-" + salon.salonId }>
-                                        <Link to={"/salon/" + salon.salonId}>
-                                            {salon.name}
-                                        </Link>
-                                    </li>
-                                )
-                            )
-                        }
-                    </ul>
-                    
-                    </>
-                )
-                :""
-                
-            }
-            <ul>
-            {
-                this.state.salons.map(salon => (
-                    <li key={"salon-link" + salon.salonId}>
-                        <Link to={"/salons/" + salon.salonId }>
-                            {salon.name}
+                <h1>
+                    {
+                        this.state.showBackButton
+                        ? (
+                            <>
+                                <Link to={ "/salon/" + (this.state.salonId ?? '') }>
+                                    &lt; Back
+                                </Link>
+                                |
+                            </>
+                        )
+                        : ""
+                    }
+                    { this.state.title }
+                </h1>
 
-                        </Link>
-                    </li>
-                )
-            )
-            }
-            </ul>
+                {
+                    this.state.salons.length > 0
+                    ? (
+                        <>
+                            <p>Saloni:</p>
+                            <ul>
+                                {
+                                    this.state.salons.map(
+                                        salon => (
+                                            <li key={ "salon-link-" + salon.salonId }>
+                                                <Link to={ "/salon/" + salon.salonId }>
+                                                    { salon.name }
+                                                </Link>
+                                            </li>
+                                        )
+                                    )
+                                }
+                            </ul>
+                        </>
+                    )
+                    : ""
+                }
+
             </>
-        )
+        );
     }
 }
